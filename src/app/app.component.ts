@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
+import {UsuarioService} from './usuario/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+    token:any = null;
+    constructor(private router:Router, private usuarioService: UsuarioService){
+        this.token = localStorage.getItem('token');
+        console.log(this.token);
+    }
+    logout(){
+        this.usuarioService.logout();
+    }
 }
