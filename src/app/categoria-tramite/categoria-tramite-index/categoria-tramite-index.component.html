@@ -1,0 +1,5 @@
+<app-categoria-tramite-show
+        *ngFor="let categoria_tramite of categoria_tramites"
+        [categoria_tramite]="categoria_tramite"
+        (destroyCategoriaTramite)="onDelete($event)">
+</app-categoria-tramite-show>

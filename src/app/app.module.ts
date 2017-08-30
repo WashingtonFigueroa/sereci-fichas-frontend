@@ -65,6 +65,11 @@ import {TipoTramiteCreateComponent} from './tipo-tramite/tipo-tramite-create/tip
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
 import {AuthGuard} from './auth.guard';
+import { CategoriaTramiteComponent } from './categoria-tramite/categoria-tramite.component';
+import { CategoriaTramiteCreateComponent } from './categoria-tramite/categoria-tramite-create/categoria-tramite-create.component';
+import { CategoriaTramiteIndexComponent } from './categoria-tramite/categoria-tramite-index/categoria-tramite-index.component';
+import { CategoriaTramiteShowComponent } from './categoria-tramite/categoria-tramite-show/categoria-tramite-show.component';
+import {CategoriaTramiteService} from './categoria-tramite/categoria-tramite.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -134,6 +139,15 @@ const routes: Routes = [
             pathMatch: 'full'
         },
     ]},
+    {path: 'categoria-tramites', component: CategoriaTramiteComponent, canActivate: [AuthGuard], children: [
+        {path: 'nuevo', component: CategoriaTramiteCreateComponent},
+        {path: 'lista', component: CategoriaTramiteIndexComponent},
+        {
+            path: '',
+            redirectTo: 'nuevo',
+            pathMatch: 'full'
+        },
+    ]},
     {
         path: '',
         redirectTo: '/login',
@@ -182,7 +196,11 @@ const routes: Routes = [
     TipoTramiteIndexComponent,
     TipoTramiteShowComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    CategoriaTramiteComponent,
+    CategoriaTramiteCreateComponent,
+    CategoriaTramiteIndexComponent,
+    CategoriaTramiteShowComponent
   ],
   imports: [
       BrowserModule,
@@ -219,7 +237,8 @@ const routes: Routes = [
       AsignacionCategoriaService,
       UsuarioService,
       AsignacionVentanillaService,
-      TipoTramiteService
+      TipoTramiteService,
+      CategoriaTramiteService,
   ],
   bootstrap: [AppComponent]
 })

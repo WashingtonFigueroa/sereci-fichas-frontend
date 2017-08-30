@@ -4,7 +4,8 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic";*/
 body {
     padding: 2em 20em;
-    background:lightgray;
+    background-color: #880000;
+/*    background:lightgray;*/
     font-family: Roboto;
 }
 .card-visor{

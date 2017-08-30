@@ -4,7 +4,7 @@
     <button md-icon-button routerLink="/visor"><md-icon>cast</md-icon></button>
     <button md-icon-button [mdMenuTriggerFor]="appCategorias"><md-icon>recent_actors</md-icon></button>
     <button md-icon-button routerLink="/asignacion-ventanillas"><md-icon>video_label</md-icon></button>
-    <button md-icon-button routerLink="/tipo-tramites"><md-icon>description</md-icon></button>
+    <button md-icon-button [mdMenuTriggerFor]="appTramites"><md-icon>description</md-icon></button>
     <button md-icon-button routerLink="/noticias"><md-icon>assignment</md-icon></button>
     <button md-icon-button routerLink="/usuarios"><md-icon>account_circle</md-icon></button>
     <button md-icon-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon></button>
@@ -17,6 +17,10 @@
     <button md-menu-item routerLink="/categorias"> Categorias</button>
     <button md-menu-item routerLink="/ventanillas"> Ventanillas</button>
     <button md-menu-item routerLink="/asignacion-categorias"> Asignacion de Categorias</button>
+</md-menu>
+<md-menu #appTramites="mdMenu">
+    <button md-menu-item routerLink="/tipo-tramites"> Tipo de Tramites</button>
+    <button md-menu-item routerLink="/categoria-tramites"> Categoria de Tramites</button>
 </md-menu>
 <section class="content">
     <router-outlet></router-outlet>

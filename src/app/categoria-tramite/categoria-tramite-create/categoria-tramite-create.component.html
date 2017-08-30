@@ -1,0 +1,36 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>assignment</md-icon>
+    </div>
+    <md-card-title>Registrar Categoria de Tramite</md-card-title>
+    <md-card-subtitle>*Las categorias de tramite que tienen un tipo de tramite</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="store()" [formGroup]="categoriaTramiteGroup">
+      <md-select ngModel name="tipo_tramite_id" formControlName="tipo_tramite_id" class="full-width">
+        <md-option *ngFor="let tipo_tramite of tipo_tramites" [value]="tipo_tramite.id">
+          {{ tipo_tramite.nombre | uppercase }}
+        </md-option>
+      </md-select>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
+        <md-error *ngIf="!categoriaTramiteGroup.get('descripcion').valid && categoriaTramiteGroup.get('descripcion').touched">
+          Por favor ingresa la descripcion
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Duracion en horas" ngModel name="duracion_horas" formControlName="duracion_horas" type="number" min="0" max="72">
+        <md-error *ngIf="!categoriaTramiteGroup.get('duracion_horas').valid && categoriaTramiteGroup.get('duracion_horas').touched">
+          Por favor ingresa la duracion de horas [0 - 72] que tarde esta categoria
+        </md-error>
+      </md-input-container>
+      <div class="text-right">
+        <button md-button [disabled]="!categoriaTramiteGroup.valid && categoriaTramiteGroup.touched" >
+          <md-icon>save</md-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>
