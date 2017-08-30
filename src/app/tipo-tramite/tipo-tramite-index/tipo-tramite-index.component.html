@@ -1,0 +1,5 @@
+<app-tipo-tramite-show
+        *ngFor="let tipo_tramite of tipo_tramites"
+        [tipo_tramite]="tipo_tramite"
+        (destroyTipoTramite)="onDelete($event)">
+</app-tipo-tramite-show>

@@ -1,0 +1,16 @@
+<md-card class="margin-bottom">
+  <md-card-header>
+    <md-card-title>VENTANILLA {{ asignacion_categoria.ventanilla.numero }} - {{ asignacion_categoria.categoria.descripcion }}</md-card-title>
+    <md-card-subtitle>
+      <md-chip-list>
+        <md-chip color="primary" selected="true">Prioridad {{ asignacion_categoria.categoria.prioridad}}</md-chip>
+      </md-chip-list>
+    </md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+
+  </md-card-content>
+  <md-card-footer align="end">
+    <button md-icon-button (click)="destroy()"><md-icon>delete</md-icon></button>
+  </md-card-footer>
+</md-card>

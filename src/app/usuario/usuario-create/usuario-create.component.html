@@ -1,0 +1,54 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>assignment</md-icon>
+    </div>
+    <md-card-title>Registrar Usuario</md-card-title>
+    <md-card-subtitle>*Registro de usuarios con sus diferentes roles</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="store()" [formGroup]="usuarioGroup">
+        <md-select placeholder="tipo de usuario" name="tipo"  formControlName="tipo" class="full-width margin-bottom">
+            <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                {{tipo.value}}
+            </md-option>
+        </md-select>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="cuenta" ngModel name="cuenta" formControlName="cuenta">
+        <md-error *ngIf="!usuarioGroup.get('cuenta').valid && usuarioGroup.get('cuenta').touched">
+          Por favor ingresa la cuenta
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="nombres" ngModel name="nombres" formControlName="nombres">
+        <md-error *ngIf="!usuarioGroup.get('nombres').valid && usuarioGroup.get('nombres').touched">
+          Por favor ingresa los nombres
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="apellidos" ngModel name="apellidos" formControlName="apellidos">
+        <md-error *ngIf="!usuarioGroup.get('apellidos').valid && usuarioGroup.get('apellidos').touched">
+          Por favor ingresa los apellidos
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="carnet" ngModel name="carnet" formControlName="carnet">
+        <md-error *ngIf="!usuarioGroup.get('carnet').valid && usuarioGroup.get('carnet').touched">
+          Por favor ingresa el carnet
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="celular" ngModel name="celular" formControlName="celular">
+        <md-error *ngIf="!usuarioGroup.get('celular').valid && usuarioGroup.get('celular').touched">
+          Por favor ingresa el numero de celular
+        </md-error>
+      </md-input-container>
+      <div class="text-right">
+        <button md-button [disabled]="!usuarioGroup.valid && usuarioGroup.touched" >
+          <md-icon>save</md-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

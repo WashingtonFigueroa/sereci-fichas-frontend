@@ -1,0 +1,31 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>description</md-icon>
+    </div>
+    <md-card-title>Registrar Tipo de Tramite</md-card-title>
+    <md-card-subtitle>*El tipo de tramite es necesario para identificar a los tramites.</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="store()" [formGroup]="tipoTramiteGroup">
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Nombre" ngModel name="nombre" formControlName="nombre">
+        <md-error *ngIf="!tipoTramiteGroup.get('nombre').valid && tipoTramiteGroup.get('nombre').touched">
+          Por favor ingresa el nombre del tipo de tramite
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
+        <md-error *ngIf="!tipoTramiteGroup.get('descripcion').valid && tipoTramiteGroup.get('descripcion').touched">
+          Por favor ingresa la descripcion del tipo de tramite
+        </md-error>
+      </md-input-container>
+      <div class="text-right">
+        <button md-button [disabled]="!tipoTramiteGroup.valid && tipoTramiteGroup.touched" >
+          <md-icon>save</md-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

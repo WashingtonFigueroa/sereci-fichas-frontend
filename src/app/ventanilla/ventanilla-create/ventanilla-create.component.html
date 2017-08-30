@@ -1,0 +1,22 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>video_label</md-icon>
+    </div>
+    <md-card-title>Registrar Ventanilla</md-card-title>
+    <md-card-subtitle>*Permite registrar nuevas ventanillas de atencion.</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (submit)="store()" [formGroup]="ventanillaGroup">
+      <md-input-container class="full-width">
+        <input mdInput type="number" placeholder="Numero de ventanilla" name="numero" formControlName="numero">
+        <md-error *ngIf="!ventanillaGroup.get('numero').valid && ventanillaGroup.get('numero').touched">
+          *Por favor complete el campo de numero de ventanilla
+        </md-error>
+      </md-input-container>
+      <div class="text-right">
+        <button md-button type="submit" [disabled]="!ventanillaGroup.valid && ventanillaGroup.touched"> <md-icon>save</md-icon> Guardar</button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

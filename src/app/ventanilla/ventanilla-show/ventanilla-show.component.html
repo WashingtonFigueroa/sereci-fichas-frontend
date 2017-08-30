@@ -1,0 +1,25 @@
+<md-card class="margin-bottom">
+  <md-card-header>
+    <div md-card-avatar class="header-image" (click)="toggle = !toggle" >
+      <md-icon *ngIf="toggle == false">menu</md-icon>
+      <md-icon *ngIf="toggle == true">clear</md-icon>
+    </div>
+    <md-card-title>Ventanilla: {{ ventanilla.numero}}</md-card-title>
+    <md-card-subtitle>
+      *Las categorias nos permiten priorizar la atencion de la ciudadania
+    </md-card-subtitle>
+  </md-card-header>
+  <md-card-content *ngIf="toggle == true">
+    <form (ngSubmit)="update()">
+      <md-input-container class="full-width">
+        <input mdInput ngModel placeholder="Numero de ventanilla" name="numero" [(ngModel)]="ventanilla.numero">
+      </md-input-container>
+      <div class="text-right">
+        <button md-button type="submit"><md-icon>save</md-icon> Actualizar</button>
+      </div>
+    </form>
+  </md-card-content>
+  <md-card-footer align="end" *ngIf="toggle == false">
+    <button md-icon-button (click)="destroy()"><md-icon>delete</md-icon></button>
+  </md-card-footer>
+</md-card>

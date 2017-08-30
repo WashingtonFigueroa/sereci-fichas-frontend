@@ -1,0 +1,10 @@
+<md-radio-group [(ngModel)]="tipo" class="full-width" (ngModelChange)="onChange()">
+    <md-radio-button value="usuario">Usuarios</md-radio-button>
+    <md-radio-button value="administrador">Administradores</md-radio-button>
+    <md-radio-button value="comunicador">Comunicadores</md-radio-button>
+    <md-radio-button value="cajero">Cajeros</md-radio-button>
+</md-radio-group>
+<app-usuario-show
+        *ngFor="let usuario of usuarios"
+        [usuario]="usuario">
+</app-usuario-show>

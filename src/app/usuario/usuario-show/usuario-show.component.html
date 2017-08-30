@@ -1,0 +1,43 @@
+<md-card class="margin-bottom">
+  <md-card-header>
+    <div md-card-avatar class="header-image" (click)="toggle = !toggle" >
+      <md-icon *ngIf="toggle == false">menu</md-icon>
+      <md-icon *ngIf="toggle == true">clear</md-icon>
+    </div>
+    <md-card-title>{{ usuario.nombres | uppercase }} {{ usuario.apellidos | uppercase }}</md-card-title>
+    <md-card-subtitle>
+      <md-chip-list>
+        <md-chip color="primary" selected="true" *ngIf="usuario.activo == true">Activado</md-chip>
+        <md-chip color="accent" selected="true" *ngIf="usuario.activo == false">
+          Desactivado
+        </md-chip>
+      </md-chip-list>
+    </md-card-subtitle>
+  </md-card-header>
+  <md-card-content *ngIf="toggle == true">
+    <form (ngSubmit)="update()">
+      <md-input-container class="full-width">
+        <input mdInput ngModel placeholder="cuenta" name="cuenta" [(ngModel)]="usuario.cuenta">
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput ngModel placeholder="nombres" name="nombres" [(ngModel)]="usuario.nombres">
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput ngModel placeholder="apellidos" name="apellidos" [(ngModel)]="usuario.apellidos">
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput ngModel placeholder="carnet" name="carnet" [(ngModel)]="usuario.carnet">
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput ngModel placeholder="celular" name="celular" [(ngModel)]="usuario.celular">
+      </md-input-container>
+      <div class="text-right">
+        <button md-button type="submit"><md-icon>save</md-icon> Actualizar</button>
+      </div>
+    </form>
+  </md-card-content>
+  <md-card-footer align="end" *ngIf="toggle == false">
+    <button *ngIf="usuario.activo == true" md-icon-button (click)="desactivar()" color="accent"><md-icon>remove</md-icon></button>
+    <button *ngIf="usuario.activo == false"md-icon-button (click)="activar()" color="primary"><md-icon>restore</md-icon></button>
+  </md-card-footer>
+</md-card>

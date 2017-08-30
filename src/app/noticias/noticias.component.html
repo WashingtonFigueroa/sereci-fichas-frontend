@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-4">
+        <md-list class="list">
+            <h3 md-subheader>Noticias<span *ngIf="router.url == '/noticias/nuevo'"> | Nuevo</span> <span *ngIf="router.url == '/noticias/lista'"> | Lista</span>
+            </h3>
+            <md-list-item>
+                <md-icon md-list-icon>folder</md-icon>
+                <h4 md-line><a routerLink="nuevo" class="list-link">Registrar Nuevo</a></h4>
+                <p md-line> *Aqui registra tu nueva noticia</p>
+            </md-list-item>
+            <md-list-item>
+                <md-icon md-list-icon>folder</md-icon>
+                <h4 md-line><a routerLink="lista" class="list-link">Listar Noticias</a></h4>
+                <p md-line> *Aqui encontraras el listado</p>
+            </md-list-item>
+        </md-list>
+    </div>
+    <div class="col-md-7 padding">
+        <router-outlet></router-outlet>
+    </div>
+</div>

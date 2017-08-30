@@ -1,0 +1,5 @@
+<app-asignacion-categoria-show
+        *ngFor="let asignacion_categoria of asignacion_categorias"
+        [asignacion_categoria]="asignacion_categoria"
+        (destroyAsignacionCategoria)="onDelete($event)">
+</app-asignacion-categoria-show>

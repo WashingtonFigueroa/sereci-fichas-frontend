@@ -1,0 +1,5 @@
+<app-asignacion-ventanilla-show
+        *ngFor="let asignacion_ventanilla of asignacion_ventanillas"
+        [asignacion_ventanilla]="asignacion_ventanilla"
+        (destroyAsignacionVentanilla)="onDelete($event)">
+</app-asignacion-ventanilla-show>

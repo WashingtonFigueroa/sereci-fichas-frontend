@@ -1,0 +1,33 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>recent_actors</md-icon>
+    </div>
+    <md-card-title>Registrar Categoria</md-card-title>
+    <md-card-subtitle>*Las categoria permite definir la prioridad de atencion</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (submit)="store()" [formGroup]="categoriaGroup">
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Descripcion" name="descripcion" formControlName="descripcion">
+        <md-error *ngIf="!categoriaGroup.get('descripcion').valid && categoriaGroup.get('descripcion').touched">
+          *Por favor complete el campo descripcion
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Acronimo" name="acronimo" formControlName="acronimo">
+        <md-error *ngIf="!categoriaGroup.get('acronimo').valid && categoriaGroup.get('acronimo').touched">
+          *Por favor complete el campo acronimo
+        </md-error>
+      </md-input-container>
+        <md-select placeholder="Prioridad" name="prioridad"  formControlName="prioridad" class="full-width margin-bottom">
+            <md-option *ngFor="let prioridad of prioridades" [value]="prioridad.value">
+                {{prioridad.value}}
+            </md-option>
+        </md-select>
+      <div class="text-right">
+        <button md-button type="submit" [disabled]="!categoriaGroup.valid && categoriaGroup.touched"> <md-icon>save</md-icon> Guardar</button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

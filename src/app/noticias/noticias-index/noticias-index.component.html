@@ -1,0 +1,5 @@
+<app-noticias-show
+                    *ngFor="let noticia of noticias"
+                    [noticia]="noticia"
+                    (destroyNoticia)="onDeleted($event)">
+</app-noticias-show>

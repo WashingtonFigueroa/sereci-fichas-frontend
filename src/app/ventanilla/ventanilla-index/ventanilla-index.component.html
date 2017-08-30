@@ -1,0 +1,5 @@
+<app-ventanilla-show
+        *ngFor="let ventanilla of ventanillas"
+        [ventanilla]="ventanilla"
+        (destroyVentanilla)="onDelete($event)">
+</app-ventanilla-show>

@@ -1,0 +1,5 @@
+<app-categoria-show
+        *ngFor="let categoria of categorias"
+        [categoria]="categoria"
+        (destroyCategoria)="onDeleted($event)">
+</app-categoria-show>

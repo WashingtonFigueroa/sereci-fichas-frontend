@@ -1,0 +1,10 @@
+<button md-icon-button color="default" class="button-visor" routerLink="/noticias/nuevo"><md-icon>home</md-icon></button>
+<marquee class="mensaje">{{ noticias }}</marquee>
+<section class="video-container">
+    <app-video></app-video>
+    <img src="../../assets/logo.png" class="logo">
+</section>
+
+<div class="fichas">
+    <app-ficha-item *ngFor="let ficha of fichas" [ficha]="ficha" class="ficha-container"></app-ficha-item>
+</div>
