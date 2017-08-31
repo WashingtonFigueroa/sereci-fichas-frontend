@@ -9,9 +9,7 @@ import {NoticiasService} from '../noticias.service';
 })
 export class NoticiasCreateComponent implements OnInit {
     noticiasGroup: FormGroup;
-    constructor(private noticiasService:NoticiasService) {
-
-    }
+    constructor(private noticiasService:NoticiasService) {}
 
     ngOnInit() {
         this.noticiasGroup = new FormGroup({

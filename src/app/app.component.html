@@ -5,12 +5,14 @@
     <button md-icon-button [mdMenuTriggerFor]="appCategorias"><md-icon>recent_actors</md-icon></button>
     <button md-icon-button routerLink="/asignacion-ventanillas"><md-icon>video_label</md-icon></button>
     <button md-icon-button [mdMenuTriggerFor]="appTramites"><md-icon>description</md-icon></button>
+    <button md-icon-button routerLink="tramites"><md-icon>receipt</md-icon></button>
     <button md-icon-button routerLink="/noticias"><md-icon>assignment</md-icon></button>
+    <button md-icon-button routerLink="/normativas"><md-icon>library_books</md-icon></button>
     <button md-icon-button routerLink="/usuarios"><md-icon>account_circle</md-icon></button>
     <button md-icon-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon></button>
 </md-toolbar>
 <md-menu #appMenu="mdMenu">
-    <button md-menu-item> Perfil </button>
+    <button md-menu-item routerLink="/perfil"> Perfil </button>
     <button md-menu-item (click)="logout()"> Cerrar Sesion</button>
 </md-menu>
 <md-menu #appCategorias="mdMenu">

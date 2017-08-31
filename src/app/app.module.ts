@@ -70,6 +70,12 @@ import { CategoriaTramiteCreateComponent } from './categoria-tramite/categoria-t
 import { CategoriaTramiteIndexComponent } from './categoria-tramite/categoria-tramite-index/categoria-tramite-index.component';
 import { CategoriaTramiteShowComponent } from './categoria-tramite/categoria-tramite-show/categoria-tramite-show.component';
 import {CategoriaTramiteService} from './categoria-tramite/categoria-tramite.service';
+import { TramiteComponent } from './tramite/tramite.component';
+import { NormativaComponent } from './normativa/normativa/normativa.component';
+import { NormativaCreateComponent } from './normativa/normativa-create/normativa-create.component';
+import { NormativaIndexComponent } from './normativa/normativa-index/normativa-index.component';
+import { NormativaShowComponent } from './normativa/normativa-show/normativa-show.component';
+import {NormativaService} from './normativa/normativa.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -148,6 +154,16 @@ const routes: Routes = [
             pathMatch: 'full'
         },
     ]},
+    {path: 'normativas', component: NormativaComponent, canActivate: [AuthGuard], children: [
+        {path: 'nuevo', component: NormativaCreateComponent},
+        {path: 'lista', component: NormativaIndexComponent},
+        {
+            path: '',
+            redirectTo: 'nuevo',
+            pathMatch: 'full'
+        },
+    ]},
+    {path: 'tramites', component: TramiteComponent},
     {
         path: '',
         redirectTo: '/login',
@@ -200,7 +216,12 @@ const routes: Routes = [
     CategoriaTramiteComponent,
     CategoriaTramiteCreateComponent,
     CategoriaTramiteIndexComponent,
-    CategoriaTramiteShowComponent
+    CategoriaTramiteShowComponent,
+    TramiteComponent,
+    NormativaComponent,
+    NormativaCreateComponent,
+    NormativaIndexComponent,
+    NormativaShowComponent
   ],
   imports: [
       BrowserModule,
@@ -239,6 +260,7 @@ const routes: Routes = [
       AsignacionVentanillaService,
       TipoTramiteService,
       CategoriaTramiteService,
+      NormativaService,
   ],
   bootstrap: [AppComponent]
 })
