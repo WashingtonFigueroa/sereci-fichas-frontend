@@ -1,0 +1,5 @@
+<app-articulo-show
+        *ngFor="let articulo of articulos"
+        [articulo]="articulo"
+        (destroyArticulo)="onDelete($event)">
+</app-articulo-show>

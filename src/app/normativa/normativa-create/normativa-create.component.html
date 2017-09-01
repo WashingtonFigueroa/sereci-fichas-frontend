@@ -1,0 +1,32 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>assignment</md-icon>
+    </div>
+    <md-card-title>Registrar Normativa</md-card-title>
+    <md-card-subtitle>*Las normativas son aplicadas acorde a ley</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="store()" [formGroup]="normativaGroup">
+
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Codigo: Res. 080/2012" ngModel name="codigo" formControlName="codigo">
+        <md-error *ngIf="!normativaGroup.get('codigo').valid && normativaGroup.get('codigo').touched">
+          Por favor ingrese el codigo segun normativa
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
+        <md-error *ngIf="!normativaGroup.get('descripcion').valid && normativaGroup.get('descripcion').touched">
+          Por favor ingresa la descripcion
+        </md-error>
+      </md-input-container>
+      <div class="text-right">
+        <button md-button [disabled]="!normativaGroup.valid && normativaGroup.touched" >
+          <md-icon>save</md-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

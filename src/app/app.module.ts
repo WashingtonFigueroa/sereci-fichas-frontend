@@ -76,6 +76,11 @@ import { NormativaCreateComponent } from './normativa/normativa-create/normativa
 import { NormativaIndexComponent } from './normativa/normativa-index/normativa-index.component';
 import { NormativaShowComponent } from './normativa/normativa-show/normativa-show.component';
 import {NormativaService} from './normativa/normativa.service';
+import { ArticuloComponent } from './articulo/articulo/articulo.component';
+import { ArticuloCreateComponent } from './articulo/articulo-create/articulo-create.component';
+import { ArticuloIndexComponent } from './articulo/articulo-index/articulo-index.component';
+import { ArticuloShowComponent } from './articulo/articulo-show/articulo-show.component';
+import {ArticuloService} from './articulo/articulo.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -163,6 +168,15 @@ const routes: Routes = [
             pathMatch: 'full'
         },
     ]},
+    {path: 'articulos', component: ArticuloComponent, canActivate: [AuthGuard], children: [
+        {path: 'nuevo', component: ArticuloCreateComponent},
+        {path: 'lista', component: ArticuloIndexComponent},
+        {
+            path: '',
+            redirectTo: 'nuevo',
+            pathMatch: 'full'
+        },
+    ]},
     {path: 'tramites', component: TramiteComponent},
     {
         path: '',
@@ -221,7 +235,11 @@ const routes: Routes = [
     NormativaComponent,
     NormativaCreateComponent,
     NormativaIndexComponent,
-    NormativaShowComponent
+    NormativaShowComponent,
+    ArticuloComponent,
+    ArticuloCreateComponent,
+    ArticuloIndexComponent,
+    ArticuloShowComponent
   ],
   imports: [
       BrowserModule,
@@ -261,6 +279,7 @@ const routes: Routes = [
       TipoTramiteService,
       CategoriaTramiteService,
       NormativaService,
+      ArticuloService,
   ],
   bootstrap: [AppComponent]
 })

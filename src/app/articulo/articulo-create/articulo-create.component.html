@@ -1,0 +1,40 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>assignment</md-icon>
+    </div>
+    <md-card-title>Registrar Articulo</md-card-title>
+    <md-card-subtitle>*Los articulos son parte de una normativa.</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="store()" [formGroup]="articuloGroup">
+      <md-select class="full-width" placeholder="Normativa" ngModel name="normativa_id" formControlName="normativa_id" *ngIf="normativas != null">
+        <md-option *ngFor="let normativa of normativas" [value]="normativa.id">{{ normativa.codigo | uppercase }}</md-option>
+      </md-select>
+      <md-input-container class="full-width">
+        <input type="number" mdInput placeholder="Numero de articulo" ngModel name="numero" formControlName="numero">
+        <md-error *ngIf="!articuloGroup.get('numero').valid && articuloGroup.get('numero').touched">
+          Por favor ingresa el numero de articulo
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Inciso. Ej. c" ngModel name="inciso" formControlName="inciso">
+        <md-error *ngIf="!articuloGroup.get('inciso').valid && articuloGroup.get('inciso').touched">
+          Por favor ingresa el inciso
+        </md-error>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
+        <md-error *ngIf="!articuloGroup.get('descripcion').valid && articuloGroup.get('descripcion').touched">
+          Por favor ingresa la descripcion
+        </md-error>
+      </md-input-container>
+      <div class="text-right">
+        <button md-button [disabled]="!articuloGroup.valid && articuloGroup.touched" >
+          <md-icon>save</md-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

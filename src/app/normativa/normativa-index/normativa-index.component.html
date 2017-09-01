@@ -1,0 +1,5 @@
+<app-normativa-show
+        *ngFor="let normativa of normativas"
+        [normativa]="normativa"
+        (destroyNormativa)="onDelete($event)">
+</app-normativa-show>
