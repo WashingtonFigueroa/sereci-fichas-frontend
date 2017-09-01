@@ -86,6 +86,7 @@ import { VideoUploadIndexComponent } from './video-upload/video-upload-index/vid
 import { VideoUploadShowComponent } from './video-upload/video-upload-show/video-upload-show.component';
 import { VideoUploadCreateComponent } from './video-upload/video-upload-create/video-upload-create.component';
 import {VideoUploadService} from './video-upload/video-upload.service';
+import {VideoService} from './video/video.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -298,7 +299,8 @@ const routes: Routes = [
       CategoriaTramiteService,
       NormativaService,
       ArticuloService,
-      VideoUploadService
+      VideoUploadService,
+      VideoService,
   ],
   bootstrap: [AppComponent]
 })
