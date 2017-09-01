@@ -1,0 +1,27 @@
+<md-card>
+  <md-card-header>
+    <div md-card-avatar class="header-image">
+      <md-icon>cast_connected</md-icon>
+    </div>
+    <md-card-title>Registrar Video</md-card-title>
+    <md-card-subtitle>*Los videos seran visualizados en lel visor</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="store()" [formGroup]="videoGroup">
+      <md-input-container class="full-width">
+        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
+        <md-error *ngIf="!videoGroup.get('descripcion').valid && videoGroup.get('descripcion').touched">
+          Por favor ingresa la descripcion
+        </md-error>
+      </md-input-container>
+      <input type="file" placeholder="Video" ngModel name="video" #video formControlName="video">
+
+      <div class="text-right">
+        <button md-button>
+          <md-icon>save</md-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>

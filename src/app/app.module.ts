@@ -81,6 +81,11 @@ import { ArticuloCreateComponent } from './articulo/articulo-create/articulo-cre
 import { ArticuloIndexComponent } from './articulo/articulo-index/articulo-index.component';
 import { ArticuloShowComponent } from './articulo/articulo-show/articulo-show.component';
 import {ArticuloService} from './articulo/articulo.service';
+import { VideoUploadComponent } from './video-upload/video-upload.component';
+import { VideoUploadIndexComponent } from './video-upload/video-upload-index/video-upload-index.component';
+import { VideoUploadShowComponent } from './video-upload/video-upload-show/video-upload-show.component';
+import { VideoUploadCreateComponent } from './video-upload/video-upload-create/video-upload-create.component';
+import {VideoUploadService} from './video-upload/video-upload.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -90,6 +95,15 @@ const routes: Routes = [
     {path: 'noticias', component: NoticiasComponent, canActivate:[AuthGuard], children: [
         {path: 'nuevo', component: NoticiasCreateComponent},
         {path: 'lista', component: NoticiasIndexComponent},
+        {
+            path: '',
+            redirectTo: 'nuevo',
+            pathMatch: 'full'
+        },
+    ]},
+    {path: 'videos-upload', component: VideoUploadComponent, canActivate: [AuthGuard], children: [
+        {path: 'nuevo', component: VideoUploadCreateComponent},
+        {path: 'lista', component: VideoUploadIndexComponent},
         {
             path: '',
             redirectTo: 'nuevo',
@@ -239,7 +253,11 @@ const routes: Routes = [
     ArticuloComponent,
     ArticuloCreateComponent,
     ArticuloIndexComponent,
-    ArticuloShowComponent
+    ArticuloShowComponent,
+    VideoUploadComponent,
+    VideoUploadIndexComponent,
+    VideoUploadShowComponent,
+    VideoUploadCreateComponent,
   ],
   imports: [
       BrowserModule,
@@ -280,6 +298,7 @@ const routes: Routes = [
       CategoriaTramiteService,
       NormativaService,
       ArticuloService,
+      VideoUploadService
   ],
   bootstrap: [AppComponent]
 })
