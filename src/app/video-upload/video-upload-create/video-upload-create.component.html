@@ -7,7 +7,7 @@
     <md-card-subtitle>*Los videos seran visualizados en lel visor</md-card-subtitle>
   </md-card-header>
   <md-card-content>
-    <form (ngSubmit)="store()" [formGroup]="videoGroup">
+    <form (ngSubmit)="store()" *ngIf="!uploading" [formGroup]="videoGroup">
       <md-input-container class="full-width">
         <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
         <md-error *ngIf="!videoGroup.get('descripcion').valid && videoGroup.get('descripcion').touched">
@@ -23,5 +23,6 @@
         </button>
       </div>
     </form>
+    <md-progress-spinner color="primary" mode="indeterminate" class="progress-spinner-center" *ngIf="uploading"></md-progress-spinner>
   </md-card-content>
 </md-card>

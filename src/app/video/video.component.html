@@ -21,7 +21,7 @@
 
         <vg-fullscreen></vg-fullscreen>
     </vg-controls>
-    <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay loop crossorigin>
+    <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay crossorigin>
         <source *ngFor="let video of videos" [src]="video.file" type="video/mp4">
     </video>
 </vg-player>

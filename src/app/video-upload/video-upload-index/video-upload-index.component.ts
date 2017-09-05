@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {VideoUploadService} from '../video-upload.service';
 
 @Component({
   selector: 'app-video-upload-index',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-upload-index.component.css']
 })
 export class VideoUploadIndexComponent implements OnInit {
+    videos: any;
+    constructor(private videoUploadService: VideoUploadService) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+        this.videoUploadService.index()
+            .subscribe(videos => this.videos = videos);
+    }
+    onDelete(video){
+        const index = this.videos.findIndex((video_uploadEl)=>{
+            return video_uploadEl.id === video.id;
+        });
+        this.videos.splice(index, 1);
+    }
 }

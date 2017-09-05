@@ -5,7 +5,8 @@ import * as variables from '../const';
 export class VideoUploadService {
     headers = new Headers();
     headers2 = new Headers();
-    base:string  = variables.base;
+    base: string  = variables.base;
+    video: string = variables.videos;
     constructor(private http: Http) {
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
@@ -17,7 +18,7 @@ export class VideoUploadService {
         return this.http.get(this.base + 'videos', {headers: this.headers}).map(res=>res.json().map(data=>data));
     }
     show(id){
-        return this.http.get(this.base + 'videos/' + id, {headers: this.headers}).map(res=>res.json());
+        return this.http.get(this.base + 'videos/' + id, {headers: this.headers}).map(res => res.json());
     }
     store(formData){
         return this.http.request('http://localhost:8000/api/videos', new RequestOptions({
@@ -30,6 +31,6 @@ export class VideoUploadService {
         return this.http.put(this.base + 'videos/' + data.id, JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
     }
     destroy(id){
-        return this.http.delete(this.base + 'videos/'+id, {headers: this.headers}).map(res=>res.json());
+        return this.http.delete(this.base + 'videos/' + id, {headers: this.headers}).map(res=>res.json());
     }
 }

@@ -6,7 +6,7 @@ import {
     MdCheckboxModule,
     MdInputModule,
     MdCardModule, MdToolbarModule, MdTooltipModule, MdMenuModule, MdTabsModule, MdListModule, MdIconModule,
-    MdSlideToggleModule, MdRadioModule, MdChipsModule, MdSelectModule
+    MdSlideToggleModule, MdRadioModule, MdChipsModule, MdSelectModule, MdProgressSpinnerModule, MdDialogModule
 } from '@angular/material';
 
 import {VgCoreModule} from 'videogular2/core';
@@ -87,6 +87,8 @@ import { VideoUploadShowComponent } from './video-upload/video-upload-show/video
 import { VideoUploadCreateComponent } from './video-upload/video-upload-create/video-upload-create.component';
 import {VideoUploadService} from './video-upload/video-upload.service';
 import {VideoService} from './video/video.service';
+import {HttpClientModule} from '@angular/common/http';
+import { MensajeDialogComponent } from './mensaje-dialog/mensaje-dialog.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -259,7 +261,9 @@ const routes: Routes = [
     VideoUploadIndexComponent,
     VideoUploadShowComponent,
     VideoUploadCreateComponent,
+    MensajeDialogComponent,
   ],
+    entryComponents: [MensajeDialogComponent],
   imports: [
       BrowserModule,
       HttpModule,
@@ -280,10 +284,12 @@ const routes: Routes = [
       MdRadioModule,
       MdChipsModule,
       MdSelectModule,
+      MdDialogModule,
       VgCoreModule,
       VgControlsModule,
       VgOverlayPlayModule,
       VgBufferingModule,
+      MdProgressSpinnerModule,
       RouterModule.forRoot(routes)
   ],
   providers: [
@@ -301,6 +307,7 @@ const routes: Routes = [
       ArticuloService,
       VideoUploadService,
       VideoService,
+      HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

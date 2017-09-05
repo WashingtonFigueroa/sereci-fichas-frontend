@@ -15,7 +15,7 @@ export class UsuarioService {
         return this.http.get(this.base + 'usuarios', {headers: this.headers}).map(res=>res.json().map(item=>item));
     }
     show(id){
-        return this.http.get(this.base + 'usuarios/'+id, {headers: this.headers}).map(res=>res.json());
+        return this.http.get(this.base + 'usuarios/' + id, {headers: this.headers}).map(res => res.json());
     }
     store(data){
         return this.http.post(this.base + 'usuarios', JSON.stringify(data), {headers: this.headers}).map(res=>res.json());

@@ -1,3 +1,5 @@
-<p>
-  video-upload-index works!
-</p>
+<app-video-upload-show
+        *ngFor="let video of videos"
+        [video]="video"
+        (destroyVideo)="onDelete($event)">
+</app-video-upload-show>

@@ -11,6 +11,7 @@ import {UsuarioService} from '../../usuario/usuario.service';
 export class VideoUploadCreateComponent implements OnInit {
 
     videoGroup: FormGroup;
+    uploading: boolean = false;
     @ViewChild('video') video;
     constructor(private usuarioService: UsuarioService,
                 private videoUploadService: VideoUploadService) {}
@@ -29,7 +30,15 @@ export class VideoUploadCreateComponent implements OnInit {
             formData.append('video', fileBrowser.files[0]);
             formData.append('descripcion', this.videoGroup.value.descripcion);
             console.log(formData);
-            this.videoUploadService.store(formData).subscribe(res => console.log(res))
+            this.uploading = true;
+            this.videoUploadService.store(formData).subscribe(
+                res => console.log(res),
+                error => console.log(error),
+                () => {
+                    this.uploading = false;
+                    console.log('the uploading has been completed');
+                }
+            )
         }
 
     }

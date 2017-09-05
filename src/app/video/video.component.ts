@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import {VideoService} from './video.service';
 import * as variables from '../const';
+
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
@@ -11,6 +12,7 @@ export class VideoComponent implements OnInit {
 
   videos: any[];
   base: string = variables.videos;
+
   constructor( private videoService: VideoService ) { }
 
   ngOnInit() {

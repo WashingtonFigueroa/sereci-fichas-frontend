@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <button md-button class="next" color="accent" *ngIf="estado == 'atendido'">
+        <button md-button class="next" color="accent" *ngIf="estado == 'atendido'" (click)="llamarFicha()">
             <md-icon>play_arrow</md-icon>
             <br>Siguiente
         </button>
