@@ -4,61 +4,61 @@
             <md-icon>play_arrow</md-icon>
             <br>Siguiente
         </button>
-        <div class="box">
+        <div class="current-ficha" *ngIf="ficha != null">
+            {{ ficha.numero | uppercase }}   |  {{ ficha.descripcion | uppercase }}  |   {{ ficha.estado_ficha| uppercase}}
+        </div>
+        <div class="box" *ngIf="estado == 'ventanilla'">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
-                    <md-card>
-                        <md-card-content>
-                            <form *ngIf="(paso != 0) && estado == 'ventanilla'" (ngSubmit)="buscar()" [formGroup]="busquedaSolicitanteGroup">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <md-input-container class="full-width">
-                                            <input mdInput name="busqueda_solicitante" formControlName="busqueda_solicitante" placeholder="Buscar solicitante">
-                                            <md-error *ngIf="!busquedaSolicitanteGroup.get('busqueda_solicitante').valid && busquedaSolicitanteGroup.get('busqueda_solicitante').touched">
-                                                Por favor ingresa nombres, apellidos, carnet o celular del solicitante
-                                            </md-error>
-                                        </md-input-container>
-                                    </div>
-                                    <div class="col-md-4 text-right">
-                                        <button md-raised-button type="submit"
-                                                [disabled]="!busquedaSolicitanteGroup.valid && busquedaSolicitanteGroup.touched">Buscar</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <form *ngIf="paso == 1.1" (submit)="guardarSolicitante()" [formGroup]="solicitanteGroup">
+                    <form (ngSubmit)="buscar()" [formGroup]="busquedaSolicitanteGroup">
+                        <div class="row">
+                            <div class="col-md-8">
                                 <md-input-container class="full-width">
-                                    <input mdInput placeholder="nombres" name="nombres" formControlName="nombres">
-                                    <md-error *ngIf="!solicitanteGroup.get('nombres').valid && solicitanteGroup.get('nombres').touched">
-                                        Por favor ingresa los nombres del solicitante
+                                    <input mdInput name="busqueda_solicitante" formControlName="busqueda_solicitante" placeholder="Buscar solicitante">
+                                    <md-error *ngIf="!busquedaSolicitanteGroup.get('busqueda_solicitante').valid && busquedaSolicitanteGroup.get('busqueda_solicitante').touched">
+                                        Por favor ingresa nombres, apellidos, carnet o celular del solicitante
                                     </md-error>
                                 </md-input-container>
-                                <md-input-container class="full-width">
-                                    <input mdInput placeholder="apellidos" name="apellidos" formControlName="apellidos">
-                                    <md-error *ngIf="!solicitanteGroup.get('apellidos').valid && solicitanteGroup.get('apellidos').touched">
-                                        Por favor ingresa los apellidos del solicitante
-                                    </md-error>
-                                </md-input-container>
-                                <md-input-container class="full-width">
-                                    <input mdInput placeholder="carnet" name="carnet" formControlName="carnet">
-                                    <md-error *ngIf="!solicitanteGroup.get('carnet').valid && solicitanteGroup.get('carnet').touched">
-                                        Por favor ingresa el carnet del solicitante
-                                    </md-error>
-                                </md-input-container>
-                                <md-input-container class="full-width">
-                                    <input mdInput placeholder="celular" name="celular" formControlName="celular">
-                                    <md-error *ngIf="!solicitanteGroup.get('celular').valid && solicitanteGroup.get('celular').touched">
-                                        Por favor ingresa el celular del solicitante
-                                    </md-error>
-                                </md-input-container>
-                                <div class="text-center">
-                                    <button md-raised-button>Guardar</button>
-                                </div>
-                            </form>
-                        </md-card-content>
-                    </md-card>
+                            </div>
+                            <div class="col-md-4 text-left">
+                                <button md-button type="submit"
+                                        [disabled]="!busquedaSolicitanteGroup.valid && busquedaSolicitanteGroup.touched">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form *ngIf="paso == 1.1" (submit)="guardarSolicitante()" [formGroup]="solicitanteGroup">
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="nombres" name="nombres" formControlName="nombres">
+                            <md-error *ngIf="!solicitanteGroup.get('nombres').valid && solicitanteGroup.get('nombres').touched">
+                                Por favor ingresa los nombres del solicitante
+                            </md-error>
+                        </md-input-container>
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="apellidos" name="apellidos" formControlName="apellidos">
+                            <md-error *ngIf="!solicitanteGroup.get('apellidos').valid && solicitanteGroup.get('apellidos').touched">
+                                Por favor ingresa los apellidos del solicitante
+                            </md-error>
+                        </md-input-container>
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="carnet" name="carnet" formControlName="carnet">
+                            <md-error *ngIf="!solicitanteGroup.get('carnet').valid && solicitanteGroup.get('carnet').touched">
+                                Por favor ingresa el carnet del solicitante
+                            </md-error>
+                        </md-input-container>
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="celular" name="celular" formControlName="celular">
+                            <md-error *ngIf="!solicitanteGroup.get('celular').valid && solicitanteGroup.get('celular').touched">
+                                Por favor ingresa el celular del solicitante
+                            </md-error>
+                        </md-input-container>
+                        <div class="text-right">
+                            <button md-button>Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+
         <div class="box" *ngIf="paso == 1.2">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
@@ -75,7 +75,7 @@
                             <td>{{ record.apellidos | uppercase }}</td>
                             <td>{{ record.carnet | uppercase }}</td>
                             <td>{{ record.celular | uppercase }}</td>
-                            <td class="text-center">
+                            <td class="text-left">
                                 <button md-icon-button (click)="seleccionarSolicitante(record)">
                                     <md-icon>check</md-icon>
                                 </button>
@@ -86,9 +86,10 @@
             </div>
         </div>
 
-        <div class="box" *ngIf="solicitante && (paso == 2 || paso == 3) ">
+        <div class="box" *ngIf="solicitante && (paso == 2 || paso == 3 || paso ==3.1 || paso == 3.2 || paso == 4) ">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
+                    <h6>SOLICITANTE</h6>
                     <table>
                         <thead>
                             <th>NOMBRES</th>
@@ -136,9 +137,10 @@
             </div>
         </div>
 
-        <div class="box" *ngIf="categoria_tramite != null && paso == 3">
+        <div class="box" *ngIf="categoria_tramite != null && (paso == 3 || paso == 3.1 || paso == 3.2 || paso == 4)">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
+                    <h6>TRAMITE</h6>
                     <table>
                         <thead>
                             <th>TIPO</th>
@@ -162,5 +164,104 @@
             </div>
         </div>
 
+        <div class="box" *ngIf="categoria_tramite != null && (paso == 3 || paso == 3.1 || paso == 3.2)">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <form (submit)="buscarInscrito()" [formGroup]="busquedaInscritoGroup">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <md-input-container class="full-width">
+                                    <input mdInput placeholder="Buscar Inscrito" name="busqueda_inscrito" formControlName="busqueda_inscrito">
+                                </md-input-container>
+                            </div>
+                            <div class="col-md-4 text-left">
+                                <button md-button type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form (submit)="guardarInscrito()" *ngIf="paso == 3.1" [formGroup]="inscritoGroup">
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="Nombres" name="nombres" formControlName="nombres">
+                        </md-input-container>
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="Apellidos" name="apellidos" formControlName="apellidos">
+                        </md-input-container>
+                        <div class="text-right">
+                            <button md-button type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" *ngIf="paso == 3.2">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <table>
+                        <thead>
+                            <th>NOMBRES</th>
+                            <th>APELLIDOS</th>
+                            <th>SELECCIONAR</th>
+                        </thead>
+                        <tbody *ngFor="let record of inscritos">
+                            <td>{{ record.nombres | uppercase }}</td>
+                            <td>{{ record.apellidos | uppercase }}</td>
+                            <td class="text-left">
+                                <button md-icon-button (click)="seleccionarInscrito(record)">
+                                    <md-icon>check</md-icon>
+                                </button>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="box" *ngIf="paso == 4">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <h6>INSCRITO</h6>
+                    <table>
+                        <thead>
+                            <th>NOMBRES</th>
+                            <th>APELLIDOS</th>
+                        </thead>
+                        <tbody>
+                            <td>{{ inscrito.nombres | uppercase }}</td>
+                            <td>{{ inscrito.apellidos | uppercase  }}</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="paso == 4">
+            <div class="col-md-offset-3 col-md-6">
+                <div class="box">
+                    <h6>SOLITUD O AUTORIZACION</h6>
+                    <div class="checkbox-section">
+                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.rectificiacion">RECTIFICACION</md-checkbox>
+                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.complementacion">COMPLEMENTACION</md-checkbox>
+                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.ratificacion">RATIFICACION</md-checkbox>
+                    </div>
+                    <div class="checkbox-section">
+                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.cambio">CAMBIO</md-checkbox>
+                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.cancelacion">CANCELACION</md-checkbox>
+                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.reposicion">REPOSICION</md-checkbox>
+                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.traspaso">TRASPASO</md-checkbox>
+                    </div>
+                </div>
+                <div class="box">
+                    <h6>REGISTRO DE ITEMS</h6>
+                    <form>
+                        <div class="checkbox-section">
+                            <md-checkbox class="checkbox-item" [(ngModel)]="tramite.con_prueba">CON PRUEBA</md-checkbox>
+                        </div>
+                        <md-input-container>
+                            <input [(ngModel)]="tramite.glosa" name="glosa">
+                        </md-input-container>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -21,7 +21,8 @@
       "styles": [
         "../node_modules/videogular2/fonts/videogular.css",
         "../node_modules/flexboxgrid/dist/flexboxgrid.css",
-        "styles.css"
+        "styles.css",
+        "theme.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

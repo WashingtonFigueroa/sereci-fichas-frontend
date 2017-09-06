@@ -5,7 +5,9 @@
     <div class="row fichas-button-container">
         <div class="col-md-offset-3 col-md-6">
             <div class="box margin-top" *ngFor="let categoria of categorias">
-                <button md-raised-button class="button-full" color="primary" (click)="store(categoria)" >{{ categoria.descripcion | uppercase }}</button>
+                <button md-raised-button class="button-full" color="primary" (click)="store(categoria)" >
+                    <span class="bigger-font">{{ categoria.descripcion | uppercase }}</span>
+                </button>
             </div>
         </div>
     </div>
