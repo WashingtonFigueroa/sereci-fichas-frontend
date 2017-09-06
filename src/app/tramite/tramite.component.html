@@ -4,5 +4,163 @@
             <md-icon>play_arrow</md-icon>
             <br>Siguiente
         </button>
+        <div class="box">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <md-card>
+                        <md-card-content>
+                            <form *ngIf="(paso != 0) && estado == 'ventanilla'" (ngSubmit)="buscar()" [formGroup]="busquedaSolicitanteGroup">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <md-input-container class="full-width">
+                                            <input mdInput name="busqueda_solicitante" formControlName="busqueda_solicitante" placeholder="Buscar solicitante">
+                                            <md-error *ngIf="!busquedaSolicitanteGroup.get('busqueda_solicitante').valid && busquedaSolicitanteGroup.get('busqueda_solicitante').touched">
+                                                Por favor ingresa nombres, apellidos, carnet o celular del solicitante
+                                            </md-error>
+                                        </md-input-container>
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <button md-raised-button type="submit"
+                                                [disabled]="!busquedaSolicitanteGroup.valid && busquedaSolicitanteGroup.touched">Buscar</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form *ngIf="paso == 1.1" (submit)="guardarSolicitante()" [formGroup]="solicitanteGroup">
+                                <md-input-container class="full-width">
+                                    <input mdInput placeholder="nombres" name="nombres" formControlName="nombres">
+                                    <md-error *ngIf="!solicitanteGroup.get('nombres').valid && solicitanteGroup.get('nombres').touched">
+                                        Por favor ingresa los nombres del solicitante
+                                    </md-error>
+                                </md-input-container>
+                                <md-input-container class="full-width">
+                                    <input mdInput placeholder="apellidos" name="apellidos" formControlName="apellidos">
+                                    <md-error *ngIf="!solicitanteGroup.get('apellidos').valid && solicitanteGroup.get('apellidos').touched">
+                                        Por favor ingresa los apellidos del solicitante
+                                    </md-error>
+                                </md-input-container>
+                                <md-input-container class="full-width">
+                                    <input mdInput placeholder="carnet" name="carnet" formControlName="carnet">
+                                    <md-error *ngIf="!solicitanteGroup.get('carnet').valid && solicitanteGroup.get('carnet').touched">
+                                        Por favor ingresa el carnet del solicitante
+                                    </md-error>
+                                </md-input-container>
+                                <md-input-container class="full-width">
+                                    <input mdInput placeholder="celular" name="celular" formControlName="celular">
+                                    <md-error *ngIf="!solicitanteGroup.get('celular').valid && solicitanteGroup.get('celular').touched">
+                                        Por favor ingresa el celular del solicitante
+                                    </md-error>
+                                </md-input-container>
+                                <div class="text-center">
+                                    <button md-raised-button>Guardar</button>
+                                </div>
+                            </form>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+        <div class="box" *ngIf="paso == 1.2">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <table>
+                        <thead>
+                            <th>NOMBRES</th>
+                            <th>APELLIDOS</th>
+                            <th>CARNET</th>
+                            <th>CELULAR</th>
+                            <th>SELECCIONAR</th>
+                        </thead>
+                        <tbody *ngFor="let record of solicitantes">
+                            <td>{{ record.nombres | uppercase }}</td>
+                            <td>{{ record.apellidos | uppercase }}</td>
+                            <td>{{ record.carnet | uppercase }}</td>
+                            <td>{{ record.celular | uppercase }}</td>
+                            <td class="text-center">
+                                <button md-icon-button (click)="seleccionarSolicitante(record)">
+                                    <md-icon>check</md-icon>
+                                </button>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" *ngIf="solicitante && (paso == 2 || paso == 3) ">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <table>
+                        <thead>
+                            <th>NOMBRES</th>
+                            <th>APELLIDOS</th>
+                            <th>CARNET</th>
+                            <th>CELULAR</th>
+                        </thead>
+                        <tbody>
+                            <td>{{ solicitante.nombres | uppercase }}</td>
+                            <td>{{ solicitante.apellidos | uppercase }}</td>
+                            <td>{{ solicitante.carnet | uppercase }}</td>
+                            <td>{{ solicitante.celular | uppercase }}</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" *ngIf="solicitante && paso == 2">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <md-select class="full-width margin-top"
+                               placeholder="Tipo de Tramite"
+                               name="tipo_tramite_id"
+                               [(ngModel)]="tipo_tramite_id"
+                               (ngModelChange)="getCategoriaTramites(tipo_tramite_id)">
+                        <md-option *ngFor="let tipo_tramite of tipo_tramites" [value]="tipo_tramite.id">
+                            {{ tipo_tramite.nombre | uppercase }}
+                        </md-option>
+                    </md-select>
+                    <md-select *ngIf="categoria_tramites != null"
+                               class="full-width margin-top"
+                               placeholder="Categoria de Tramite"
+                               name="categoria_tramite_id"
+                               [(ngModel)]="tramite.categoria_tramite_id"
+                               (ngModelChange)="seleccionarCategoriaTramite(tramite.categoria_tramite_id)">
+                        <md-option *ngFor="let categoria_tramite of categoria_tramites" [value]="categoria_tramite.id">
+                            {{ categoria_tramite.descripcion | uppercase }}
+                        </md-option>
+                    </md-select>
+                    <div class="text-right margin-top" *ngIf="categoria_tramites != null">
+                        <button md-button (click)="irPaso3()">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" *ngIf="categoria_tramite != null && paso == 3">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <table>
+                        <thead>
+                            <th>TIPO</th>
+                            <th>CATEGORIA</th>
+                            <th>DURACION</th>
+                        </thead>
+                        <tbody>
+                            <td>{{ categoria_tramite.tipo_tramite.descripcion | uppercase }}</td>
+                            <td>{{ categoria_tramite.descripcion | uppercase }}</td>
+                            <td>
+                                <span *ngIf="categoria_tramite.duracion_horas == 0">
+                                    INMEDIATO
+                                </span>
+                                <span *ngIf="categoria_tramite.duracion_horas > 0">
+                                    {{ categoria_tramite.duracion_horas }} HORAS
+                                </span>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

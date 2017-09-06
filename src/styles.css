@@ -152,6 +152,18 @@ body {
     width: 100%;
     font-size: 2em;
 }
+.box{
+    margin-top: 1em;
+}
+table{
+    margin-top: 1em;
+}
+table th{
+    text-align: left;
+}
+table td, table th{
+    padding: .5em;
+}
 @keyframes bigger {
     0% { font-weight: lighter; }
     10% { font-weight: 100; }

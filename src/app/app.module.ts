@@ -89,6 +89,7 @@ import {VideoUploadService} from './video-upload/video-upload.service';
 import {VideoService} from './video/video.service';
 import {HttpClientModule} from '@angular/common/http';
 import { MensajeDialogComponent } from './mensaje-dialog/mensaje-dialog.component';
+import {SolicitanteService} from './solicitante/solicitante.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -307,6 +308,7 @@ const routes: Routes = [
       ArticuloService,
       VideoUploadService,
       VideoService,
+      SolicitanteService,
       HttpClientModule
   ],
   bootstrap: [AppComponent]

@@ -25,4 +25,7 @@ export class TipoTramiteService {
     destroy(id){
         return this.http.delete(this.base + 'tipo-tramites/'+id, {headers: this.headers}).map(res=>res.json());
     }
+    getCategoriaTramites(tipo_tramite_id){
+        return this.http.get(this.base + 'get-categoria-tramites/' + tipo_tramite_id, {headers: this.headers}).map(res=>res.json().map(item=>item));
+    }
 }
