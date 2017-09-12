@@ -91,6 +91,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { MensajeDialogComponent } from './mensaje-dialog/mensaje-dialog.component';
 import {SolicitanteService} from './solicitante/solicitante.service';
 import {InscritoService} from './inscrito/inscrito.service';
+import {CajeroService} from './cajero/cajero.service';
+import {TramiteService} from './tramite/tramite.service';
+import {SolicitudAutorizacionService} from './solicitud-autorizacion/solicitud-autorizacion.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -311,6 +314,9 @@ const routes: Routes = [
       VideoService,
       SolicitanteService,
       InscritoService,
+      CajeroService,
+      TramiteService,
+      SolicitudAutorizacionService,
       HttpClientModule
   ],
   bootstrap: [AppComponent]

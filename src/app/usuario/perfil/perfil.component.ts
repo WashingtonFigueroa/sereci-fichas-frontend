@@ -12,7 +12,7 @@ export class PerfilComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this.usuarioService.usuario().subscribe(res=>{
+    this.usuarioService.usuario().subscribe(res => {
         this.usuario = res;
         console.log(res);
     });

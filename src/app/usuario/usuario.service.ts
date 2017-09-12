@@ -5,10 +5,12 @@ import * as variables from '../const';
 @Injectable()
 export class UsuarioService {
     headers = new Headers();
-    base:string = variables.base;
+    base: string = variables.base;
     constructor(private http: Http, private router: Router) {
-        this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        setTimeout(() => {
+            this.headers.append('Content-Type', 'application/json');
+            this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        }, 500);
     }
 
     index(){
@@ -21,10 +23,10 @@ export class UsuarioService {
         return this.http.post(this.base + 'usuarios', JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
     }
     update(data){
-        return this.http.put(this.base + 'usuarios/'+data.id, JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
+        return this.http.put(this.base + 'usuarios/' + data.id, JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
     }
     destroy(id){
-        return this.http.delete(this.base + 'usuarios/'+id, {headers: this.headers}).map(res=>res.json());
+        return this.http.delete(this.base + 'usuarios/' + id, {headers: this.headers}).map(res=>res.json());
     }
     autenticar(data){
         return this.http.post(this.base + 'autenticar', JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
@@ -34,13 +36,13 @@ export class UsuarioService {
         this.router.navigate(['/']);
     }
     usuario(){
-        return this.http.get(this.base + 'usuario', {headers: this.headers}).map(res=>res.json());
+        return this.http.get(this.base + 'usuario', {headers: this.headers}).map(res => res.json());
     }
     activar(data){
-        return this.http.put(this.base + 'usuarios-activar/'+data.id, JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
+        return this.http.put(this.base + 'usuarios-activar/' + data.id, JSON.stringify(data), {headers: this.headers}).map(res => res.json());
     }
-    desactivar(data){
-        return this.http.put(this.base + 'usuarios-desactivar/'+data.id, JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
+    desactivar(data) {
+        return this.http.put(this.base + 'usuarios-desactivar/' + data.id, JSON.stringify(data), {headers: this.headers}).map(res => res.json());
     }
     administradoresUser(){
         return this.http.get(this.base + 'administradores-user', {headers: this.headers}).map(res=>res.json().map(item=>item));

@@ -21,7 +21,7 @@ export class VideoUploadService {
         return this.http.get(this.base + 'videos/' + id, {headers: this.headers}).map(res => res.json());
     }
     store(formData){
-        return this.http.request('http://localhost:8000/api/videos', new RequestOptions({
+        return this.http.request(this.base + 'videos', new RequestOptions({
             method: RequestMethod.Post,
             body: formData,
             headers: this.headers2

@@ -24,8 +24,7 @@ export class FichaService {
     destroy(id){
         return this.http.delete(this.base + 'fichas/' + id, {headers: this.headers}).map(res => res.json());
     }
-    llamarFicha(){
-//        return this.http.get(this.base + 'llamar-ficha', {headers: this.headers}).map(res => res.json().map(data => data));
-        return this.http.get(this.base + 'llamar-ficha', {headers: this.headers}).map(res => res.json());
+    llamarFicha(ventanilla_id) {
+        return this.http.get(this.base + 'llamar-ficha/' + ventanilla_id , {headers: this.headers}).map(res => res.json());
     }
 }

@@ -7,6 +7,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TipoTramiteService} from '../tipo-tramite/tipo-tramite.service';
 import {CategoriaTramiteService} from '../categoria-tramite/categoria-tramite.service';
 import {InscritoService} from '../inscrito/inscrito.service';
+import {AsignacionVentanillaService} from '../asignacion-ventanilla/asignacion-ventanilla.service';
+import {CajeroService} from '../cajero/cajero.service';
+import {SolicitudAutorizacionService} from '../solicitud-autorizacion/solicitud-autorizacion.service';
+import {TramiteService} from './tramite.service';
 
 @Component({
   selector: 'app-tramite',
@@ -30,22 +34,26 @@ export class TramiteComponent implements OnInit {
   tipo_tramite_id: any;
   categoria_tramite: any = null;
   ficha: any = null;
-
+  asignacion_ventanillas: any[] = null;
+  ventanilla: any = null;
   tramite = {
+      'ventanilla_id': 0,
       'ficha_id': 0,
       'categoria_tramite_id': 0,
       'inscrito_id': 0,
-      'solicitud_autorizacion' : {
-          'rectificiacion': false,
-          'complementacion': false,
-          'ratificacion': false,
-          'cambio': false,
-          'cancelacion': false,
-          'reposicion': false,
-          'traspaso': false
-      },
+      'solicitud_autorizacion_id': 0,
       'con_prueba': false,
-      'glosa': '',
+      'glosa': ' ',
+      'parentesco': ''
+  };
+  solicitud_autorizacion = {
+      'rectificacion': false,
+      'complementacion': false,
+      'ratificacion': false,
+      'cambio': false,
+      'cancelacion': false,
+      'reposicion': false,
+      'traspaso': false
   };
 
     /*paso 1*/
@@ -76,6 +84,9 @@ export class TramiteComponent implements OnInit {
               private categoriaTramiteService: CategoriaTramiteService,
               private tipoTramiteService: TipoTramiteService,
               private inscritoService: InscritoService,
+              private cajeroService: CajeroService,
+              private tramiteService: TramiteService,
+              private solicitudAutorizacionService: SolicitudAutorizacionService,
               public dialog: MdDialog) {
   }
 
@@ -99,23 +110,29 @@ export class TramiteComponent implements OnInit {
           'apellidos' : new FormControl(null, Validators.required)
       });
       this.tipoTramiteService.index().subscribe(res => this.tipo_tramites = res);
-
+      this.cajeroService.getAsignacionVentanillas().subscribe(res => this.asignacion_ventanillas = res);
   }
 
-  llamarFicha(){
-    this.fichaService.llamarFicha().subscribe(res => {
+  seleccionarVentanilla(ventanilla){
+      this.tramite.ventanilla_id = ventanilla.id;
+      this.ventanilla = ventanilla;
+  }
+
+  llamarFicha() {
+    this.fichaService.llamarFicha(this.ventanilla.id).subscribe(res => {
         if (res.error) {
             const dialogRef = this.dialog.open(MensajeDialogComponent, {
                 width: '400px',
-                height: '125px',
+                height: '150px',
                 data: { mensaje: res.error }
             });
             dialogRef.afterClosed().subscribe(result => {
                 console.log('The dialog was closed');
                 console.log(result);
+                this.ventanilla = null;
             });
             this.paso = 0;
-        }else{
+        } else {
             this.paso = 1;
             this.ficha = res;
             this.tramite.ficha_id = res.id;
@@ -161,7 +178,7 @@ export class TramiteComponent implements OnInit {
       };
       this.solicitanteService.store(data).subscribe(res => {
           const message = 'El solicitante ' + res.nombres.toUpperCase() + ' ' + res.apellidos.toUpperCase() +
-                          ' has sido registrado exitosamente';
+                          ' ha sido registrado exitosamente';
           this.solicitante = res;
           const dialogRef = this.dialog.open(MensajeDialogComponent, {
               width: '400px',
@@ -193,8 +210,10 @@ export class TramiteComponent implements OnInit {
       });
   }
 
-  irPaso3(){
-      this.paso = 3;
+  irPaso3() {
+      if(this.tramite.categoria_tramite_id != 0){
+          this.paso = 3;
+      }
   }
 
   buscarInscrito() {
@@ -248,9 +267,25 @@ export class TramiteComponent implements OnInit {
         });
     }
 
-  seleccionarInscrito(record){
+  seleccionarInscrito(record) {
     this.inscrito = record;
     this.paso = 4; // obs
+  }
+  guardarTramite(){
+    this.solicitudAutorizacionService.store(this.solicitud_autorizacion).subscribe(res => {
+        this.tramite.solicitud_autorizacion_id = res.id;
+        this.tramiteService.store(this.tramite).subscribe( res => {
+            const dialogRef = this.dialog.open(MensajeDialogComponent, {
+                width: '400px',
+                height: '150px',
+                data: { mensaje: 'Tramite registrado exitosamente' }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+                console.log('The dialog was closed');
+                console.log(result);
+            });
+        });
+    });
   }
 
 }

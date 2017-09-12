@@ -1,4 +1,18 @@
-<div class="row">
+<div class="row" *ngIf="ventanilla == null">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="box margin-top" *ngFor="let asignacion_ventanilla of asignacion_ventanillas">
+            <button md-raised-button
+                    class="button-full"
+                    color="primary"
+                    (click)="seleccionarVentanilla(asignacion_ventanilla.ventanilla)" >
+                <span class="bigger-font">VENTANILLA {{ asignacion_ventanilla.ventanilla.numero }}</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="ventanilla" *ngIf="ventanilla != null">{{ ventanilla.numero }}</div>
+<div class="row" *ngIf="ventanilla != null">
     <div class="col-md-12">
         <button md-button class="next" color="accent" *ngIf="estado == 'atendido'" (click)="llamarFicha()">
             <md-icon>play_arrow</md-icon>
@@ -115,7 +129,8 @@
                                placeholder="Tipo de Tramite"
                                name="tipo_tramite_id"
                                [(ngModel)]="tipo_tramite_id"
-                               (ngModelChange)="getCategoriaTramites(tipo_tramite_id)">
+                               (ngModelChange)="getCategoriaTramites(tipo_tramite_id)"
+                                required>
                         <md-option *ngFor="let tipo_tramite of tipo_tramites" [value]="tipo_tramite.id">
                             {{ tipo_tramite.nombre | uppercase }}
                         </md-option>
@@ -125,7 +140,8 @@
                                placeholder="Categoria de Tramite"
                                name="categoria_tramite_id"
                                [(ngModel)]="tramite.categoria_tramite_id"
-                               (ngModelChange)="seleccionarCategoriaTramite(tramite.categoria_tramite_id)">
+                               (ngModelChange)="seleccionarCategoriaTramite(tramite.categoria_tramite_id)"
+                                required>
                         <md-option *ngFor="let categoria_tramite of categoria_tramites" [value]="categoria_tramite.id">
                             {{ categoria_tramite.descripcion | uppercase }}
                         </md-option>
@@ -239,26 +255,42 @@
                 <div class="box">
                     <h6>SOLITUD O AUTORIZACION</h6>
                     <div class="checkbox-section">
-                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.rectificiacion">RECTIFICACION</md-checkbox>
-                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.complementacion">COMPLEMENTACION</md-checkbox>
-                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.ratificacion">RATIFICACION</md-checkbox>
+                        <md-checkbox class="checkbox-item" name="rectificiacion" [(ngModel)]="solicitud_autorizacion.rectificacion">RECTIFICACION</md-checkbox>
+                        <md-checkbox class="checkbox-item" name="complementacion" [(ngModel)]="solicitud_autorizacion.complementacion">COMPLEMENTACION</md-checkbox>
+                        <md-checkbox class="checkbox-item" name="ratificacion" [(ngModel)]="solicitud_autorizacion.ratificacion">RATIFICACION</md-checkbox>
                     </div>
                     <div class="checkbox-section">
-                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.cambio">CAMBIO</md-checkbox>
-                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.cancelacion">CANCELACION</md-checkbox>
-                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.reposicion">REPOSICION</md-checkbox>
-                        <md-checkbox class="checkbox-item" [(ngModel)]="tramite.solicitud_autorizacion.traspaso">TRASPASO</md-checkbox>
+                        <md-checkbox class="checkbox-item" name="cambio" [(ngModel)]="solicitud_autorizacion.cambio">CAMBIO</md-checkbox>
+                        <md-checkbox class="checkbox-item" name="cancelacion" [(ngModel)]="solicitud_autorizacion.cancelacion">CANCELACION</md-checkbox>
+                        <md-checkbox class="checkbox-item" name="reposicion" [(ngModel)]="solicitud_autorizacion.reposicion">REPOSICION</md-checkbox>
+                        <md-checkbox class="checkbox-item" name="traspaso" [(ngModel)]="solicitud_autorizacion.traspaso">TRASPASO</md-checkbox>
                     </div>
                 </div>
                 <div class="box">
-                    <h6>REGISTRO DE ITEMS</h6>
-                    <form>
-                        <div class="checkbox-section">
-                            <md-checkbox class="checkbox-item" [(ngModel)]="tramite.con_prueba">CON PRUEBA</md-checkbox>
+                    <h6>TRAMITE - INFORMACION ADICIONAL</h6>
+                    <form (submit)="guardarTramite()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="box">
+                                    <md-checkbox class="checkbox-item" name="con_prueba" [(ngModel)]="tramite.con_prueba">CON PRUEBA</md-checkbox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="box">
+                                    <md-select class="full-width" placeholder="Parentesco de solicitante" [(ngModel)]="tramite.parentesco" name="parentesco" required>
+                                        <md-option value="interesado">INTERESADO</md-option>
+                                        <md-option value="familiar">FAMILIAR</md-option>
+                                        <md-option value="apoderado">APODERADO</md-option>
+                                    </md-select>
+                                </div>
+                            </div>
                         </div>
-                        <md-input-container>
-                            <input [(ngModel)]="tramite.glosa" name="glosa">
+                        <md-input-container class="full-width">
+                            <input mdInput placeholder="Glosa" [(ngModel)]="tramite.glosa" name="glosa">
                         </md-input-container>
+                        <div class="text-right">
+                            <button md-button> Guardar</button>
+                        </div>
                     </form>
                 </div>
             </div>
