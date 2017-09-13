@@ -9,11 +9,15 @@ import {UsuarioService} from '../usuario.service';
 export class UsuarioIndexComponent implements OnInit {
     usuarios: any[];
     tipo: any;
+    loading = false
     constructor(private usuarioService:UsuarioService) {}
 
     ngOnInit() {
         this.usuarioService.index()
-            .subscribe(res => this.usuarios = res);
+            .subscribe(res => {
+                this.usuarios = res;
+                this.loading = true;
+            });
     }
     onDelete(usuario){
         const index = this.usuarios.findIndex((usuarioEl)=>{

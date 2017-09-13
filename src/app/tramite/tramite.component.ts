@@ -7,7 +7,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TipoTramiteService} from '../tipo-tramite/tipo-tramite.service';
 import {CategoriaTramiteService} from '../categoria-tramite/categoria-tramite.service';
 import {InscritoService} from '../inscrito/inscrito.service';
-import {AsignacionVentanillaService} from '../asignacion-ventanilla/asignacion-ventanilla.service';
 import {CajeroService} from '../cajero/cajero.service';
 import {SolicitudAutorizacionService} from '../solicitud-autorizacion/solicitud-autorizacion.service';
 import {TramiteService} from './tramite.service';
@@ -283,6 +282,7 @@ export class TramiteComponent implements OnInit {
             dialogRef.afterClosed().subscribe(result => {
                 console.log('The dialog was closed');
                 console.log(result);
+                this.paso = 1;
             });
         });
     });

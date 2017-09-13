@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
+import {UsuarioService} from '../usuario/usuario.service';
 import * as variables from '../const';
 @Injectable()
 export class VideoService {
     headers = new Headers();
     base: string  = variables.base;
     video: string = variables.videos;
-    constructor(private http: Http) {
+    constructor(private http: Http, private usuarioService: UsuarioService) {
         this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        this.headers.append('Authorization', 'Bearer ' + usuarioService.getToken());
     }
     videoIds(){
         return this.http.get(this.base + 'video-ids', {headers: this.headers})

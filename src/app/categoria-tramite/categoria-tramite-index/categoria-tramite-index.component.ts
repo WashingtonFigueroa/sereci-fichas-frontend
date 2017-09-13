@@ -8,11 +8,15 @@ import {CategoriaTramiteService} from '../categoria-tramite.service';
 })
 export class CategoriaTramiteIndexComponent implements OnInit {
     categoria_tramites: any;
-    constructor(private categoriaTramiteService:CategoriaTramiteService) {}
+    loading = false;
+    constructor(private categoriaTramiteService: CategoriaTramiteService) {}
 
     ngOnInit() {
         this.categoriaTramiteService.index()
-            .subscribe(res => this.categoria_tramites = res);
+            .subscribe(res => {
+                this.categoria_tramites = res;
+                this.loading = true;
+            });
     }
     onDelete(categoria_tramite){
         const index = this.categoria_tramites.findIndex((categoria_tramiteEl)=>{

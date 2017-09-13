@@ -8,11 +8,15 @@ import {AsignacionCategoriaService} from '../asignacion-categoria.service';
 })
 export class AsignacionCategoriaIndexComponent implements OnInit {
     asignacion_categorias: any;
-    constructor(private asignacionCategoriaService:AsignacionCategoriaService) {}
+    loading = false;
+    constructor(private asignacionCategoriaService: AsignacionCategoriaService ) {}
 
     ngOnInit() {
         this.asignacionCategoriaService.index()
-            .subscribe(res => this.asignacion_categorias = res);
+            .subscribe(res => {
+                this.asignacion_categorias = res;
+                this.loading = true;
+            });
     }
     onDelete(asignacion_categoria){
         const index = this.asignacion_categorias.findIndex((asignacion_categoriaEl)=>{

@@ -8,11 +8,15 @@ import {TipoTramiteService} from '../tipo-tramite.service';
 })
 export class TipoTramiteIndexComponent implements OnInit {
     tipo_tramites: any;
-    constructor(private tipoTramiteService:TipoTramiteService) {}
+    loading = false;
+    constructor(private tipoTramiteService: TipoTramiteService ) {}
 
     ngOnInit() {
         this.tipoTramiteService.index()
-            .subscribe(res => this.tipo_tramites = res);
+            .subscribe(res => {
+                this.tipo_tramites = res;
+                this.loading = true;
+            });
     }
     onDelete(tipo_tramite){
         const index = this.tipo_tramites.findIndex((tipo_tramiteEl)=>{

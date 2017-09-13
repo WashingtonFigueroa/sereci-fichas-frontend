@@ -2,10 +2,43 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic";
+
+*{
+    padding: 0;
+    margin: 0;
+}
 body {
-    padding: 2em 18em;
-    background-color: #fe9613;
     font-family: Roboto;
+    height: 100vh;
+    background-color: #607D8B;
+    padding: 0 5vw;
+}
+.bg{
+    position: fixed;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F5F5F5;
+    border-top: 5em solid #607D8B;
+    border-bottom: 5em solid #607D8B;
+    box-sizing: border-box;
+}
+.navegacion{
+    width: 90vw;
+    top: 0;
+    left: 0;
+    margin-right: 5vw;
+    z-index: 100;
+}
+.center{
+    display: block;
+    margin: 0 auto;
+    margin-top: 30vh;
+}
+.col-md-3, .col-md-4{
+    box-shadow: 2px 0 2px darkslategray;
 }
 .card-visor{
     width: 99vw;
@@ -66,7 +99,7 @@ body {
     left: 0px;
     font-size: 2em;
     color: white;
-    font-family: Arial;
+    /*font-family: Arial;*/
     background-color: rgba(0,0,0,.5);
     width: 100vw;
     padding: .5em 0;
@@ -89,16 +122,21 @@ body {
 .content{
     position: relative;
     box-sizing: border-box;
-    width: 100%;
-    height: 75vh;
-    background-color: rgba(255,255,255,1);
+    width: 90vw;
+    height: 91vh;
+    margin: 0 auto;
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: #fff;
 }
 .padding{
-    padding: 1em 0;
+    padding: 7.5vh 12em;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+    min-height: 90vh;
 }
 .full-width{
+    margin-top: 1em;
     width: 100%;
 }
 .row-center, .text-center{
@@ -118,7 +156,7 @@ body {
     position: fixed;
     top: 66vh;
     left: 27.4vw;
-    z-index: 100;
+    z-index: 1000;
 }
 /*------------------------------*/
 
@@ -131,11 +169,13 @@ body {
     cursor: pointer;
 }
 .list{
-    pos
-    background-color: white;
+    position: fixed;
+    height: 91vh;
+    color: white;
 }
 .list-link{
-    color: black;
+    color: #343027;
+    font-weight: bold;
     text-decoration: none;
 }
 .page-not-found{
@@ -184,6 +224,36 @@ h6{
 .checkbox-item{
     margin-right: 1em;
     font-size: .8em;
+}
+input[type="file"]{
+    background-color: beige;
+    border: none;
+    opacity: 0;
+}
+.video-file{
+    display: block;
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+}
+.radio-group{
+    display: block;
+    background-color: white;
+    padding: 1em 2em;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+    border-radius: 2px;
+    box-shadow: 1px 2px 5px lightgray;
+}
+.legend-title{
+    display: block;
+    font-size: 1.2em;
+    font-weight:bold;
+    width: 100%;
+    text-align: center;
 }
 @keyframes bigger {
     0% { font-weight: lighter; }

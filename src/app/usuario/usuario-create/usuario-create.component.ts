@@ -28,7 +28,7 @@ export class UsuarioCreateComponent implements OnInit {
     }
 
     store(){
-        let data = {
+        const data = {
             'tipo' : this.usuarioGroup.value.tipo,
             'cuenta' : this.usuarioGroup.value.cuenta,
             'nombres' : this.usuarioGroup.value.nombres,

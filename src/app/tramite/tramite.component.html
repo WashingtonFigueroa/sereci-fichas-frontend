@@ -10,7 +10,6 @@
         </div>
     </div>
 </div>
-
 <div class="ventanilla" *ngIf="ventanilla != null">{{ ventanilla.numero }}</div>
 <div class="row" *ngIf="ventanilla != null">
     <div class="col-md-12">
@@ -21,6 +20,7 @@
         <div class="current-ficha" *ngIf="ficha != null">
             {{ ficha.numero | uppercase }}   |  {{ ficha.descripcion | uppercase }}  |   {{ ficha.estado_ficha| uppercase}}
         </div>
+
         <div class="box" *ngIf="estado == 'ventanilla'">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6">
@@ -34,7 +34,7 @@
                                     </md-error>
                                 </md-input-container>
                             </div>
-                            <div class="col-md-4 text-left">
+                            <div class="col-md-4 text-left full-width">
                                 <button md-button type="submit"
                                         [disabled]="!busquedaSolicitanteGroup.valid && busquedaSolicitanteGroup.touched">Buscar</button>
                             </div>
@@ -190,7 +190,7 @@
                                     <input mdInput placeholder="Buscar Inscrito" name="busqueda_inscrito" formControlName="busqueda_inscrito">
                                 </md-input-container>
                             </div>
-                            <div class="col-md-4 text-left">
+                            <div class="col-md-4 text-left full-width">
                                 <button md-button type="submit">Buscar</button>
                             </div>
                         </div>

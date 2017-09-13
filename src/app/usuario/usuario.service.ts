@@ -6,15 +6,18 @@ import * as variables from '../const';
 export class UsuarioService {
     headers = new Headers();
     base: string = variables.base;
+    user = null;
+    token = null;
     constructor(private http: Http, private router: Router) {
-        setTimeout(() => {
-            this.headers.append('Content-Type', 'application/json');
-            this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
-        }, 500);
+        this.headers.append('Content-Type', 'application/json');
+        this.headers.append('Authorization', 'Bearer ' + this.token );
+        if(this.user == null){
+            router.navigate(['/']);
+        }
     }
-
     index(){
-        return this.http.get(this.base + 'usuarios', {headers: this.headers}).map(res=>res.json().map(item=>item));
+        return this.http.get(this.base + 'usuarios', {headers: this.headers})
+                        .map(res => res.json().map(item => item));
     }
     show(id){
         return this.http.get(this.base + 'usuarios/' + id, {headers: this.headers}).map(res => res.json());
@@ -29,7 +32,12 @@ export class UsuarioService {
         return this.http.delete(this.base + 'usuarios/' + id, {headers: this.headers}).map(res=>res.json());
     }
     autenticar(data){
-        return this.http.post(this.base + 'autenticar', JSON.stringify(data), {headers: this.headers}).map(res=>res.json());
+        return this.http.post(this.base + 'autenticar', JSON.stringify(data), {headers: this.headers})
+                        .map(res => {
+                            this.user = res.json().usuario;
+                            this.token = res.json().token;
+                            return res.json();
+                        });
     }
     logout(){
         localStorage.removeItem('token');
@@ -39,10 +47,12 @@ export class UsuarioService {
         return this.http.get(this.base + 'usuario', {headers: this.headers}).map(res => res.json());
     }
     activar(data){
-        return this.http.put(this.base + 'usuarios-activar/' + data.id, JSON.stringify(data), {headers: this.headers}).map(res => res.json());
+        return this.http.put(this.base + 'usuarios-activar/' + data.id, JSON.stringify(data), {headers: this.headers})
+                        .map(res => res.json());
     }
     desactivar(data) {
-        return this.http.put(this.base + 'usuarios-desactivar/' + data.id, JSON.stringify(data), {headers: this.headers}).map(res => res.json());
+        return this.http.put(this.base + 'usuarios-desactivar/' + data.id, JSON.stringify(data), {headers: this.headers})
+                        .map(res => res.json());
     }
     administradoresUser(){
         return this.http.get(this.base + 'administradores-user', {headers: this.headers}).map(res=>res.json().map(item=>item));
@@ -60,6 +70,12 @@ export class UsuarioService {
         return this.http.get(this.base + 'comunicadores', {headers: this.headers}).map(res=>res.json().map(item=>item));
     }
     cajeros(){
-        return this.http.get(this.base + 'cajeros', {headers: this.headers}).map(res=>res.json().map(item=>item));
+        return this.http.get(this.base + 'cajeros', {headers: this.headers}).map(res => res.json().map(item => item));
+    }
+    getToken() {
+        return this.token;
+    }
+    getUser() {
+        return this.user;
     }
 }

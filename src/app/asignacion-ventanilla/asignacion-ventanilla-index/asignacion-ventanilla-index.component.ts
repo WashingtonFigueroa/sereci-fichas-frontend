@@ -8,13 +8,14 @@ import {AsignacionVentanillaService} from '../asignacion-ventanilla.service';
 })
 export class AsignacionVentanillaIndexComponent implements OnInit {
     asignacion_ventanillas: any;
+    loading = false;
     constructor(private asignacionVentanillaService:AsignacionVentanillaService) {}
 
     ngOnInit() {
         this.asignacionVentanillaService.index()
             .subscribe(res => {
                 this.asignacion_ventanillas = res;
-                console.log(res);
+                this.loading = true;
             });
     }
     onDelete(asignacion_ventanilla){

@@ -8,9 +8,11 @@ import {CategoriaService} from '../categoria.service';
 })
 export class CategoriaIndexComponent implements OnInit {
     categorias: any;
+    loading = false;
     constructor(private categoriaService: CategoriaService) {
         categoriaService.index().subscribe(res=>{
             this.categorias = res;
+            this.loading = true;
         });
     }
 

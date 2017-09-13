@@ -8,11 +8,15 @@ import {NoticiasService} from '../noticias.service';
 })
 export class NoticiasIndexComponent implements OnInit {
     noticias: any;
-    constructor(private noticiasService:NoticiasService) {}
+    loading = false;
+    constructor(private noticiasService: NoticiasService) {}
 
     ngOnInit() {
         this.noticiasService.index()
-            .subscribe(noticias => this.noticias = noticias);
+            .subscribe(noticias => {
+                this.noticias = noticias;
+                this.loading = true;
+            });
     }
     onDeleted(noticia){
         const index = this.noticias.findIndex((noticiaEl)=>{

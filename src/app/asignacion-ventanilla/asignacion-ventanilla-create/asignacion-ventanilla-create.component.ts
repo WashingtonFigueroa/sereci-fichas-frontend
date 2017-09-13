@@ -17,8 +17,8 @@ export class AsignacionVentanillaCreateComponent implements OnInit {
                 private ventanillaService: VentanillaService,
                 private asignacionVentanillaService: AsignacionVentanillaService) {
 
-        this.usuarioService.cajeros().subscribe(res=>this.cajeros = res);
-        this.ventanillaService.index().subscribe(res=>this.ventanillas = res);
+        this.usuarioService.cajeros().subscribe(res => this.cajeros = res);
+        this.ventanillaService.index().subscribe(res => this.ventanillas = res);
     }
 
     ngOnInit() {

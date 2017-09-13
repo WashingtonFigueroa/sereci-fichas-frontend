@@ -9,10 +9,13 @@ import {UsuarioService} from '../usuario/usuario.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    loginGroup:FormGroup;
+    loginGroup: FormGroup;
     constructor(private usuarioService: UsuarioService, private router: Router) { }
 
     ngOnInit() {
+        if(localStorage.getItem('token')){
+            localStorage.removeItem('token');
+        }
         this.loginGroup = new FormGroup({
             'cuenta': new FormControl(null, [Validators.required]),
             'password': new FormControl(null, [Validators.required])
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
         this.usuarioService.autenticar(credenciales).subscribe(res=>{
             if(res.token){
                 localStorage.setItem('token', res.token);
-                this.router.navigate(['usuarios']);
+                this.router.navigate(['perfil']);
                 console.log(res);
             }else{
                 console.log(res);

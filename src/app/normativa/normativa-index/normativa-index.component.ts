@@ -8,11 +8,15 @@ import {NormativaService} from '../normativa.service';
 })
 export class NormativaIndexComponent implements OnInit {
     normativas: any;
+    loading = false;
     constructor(private normativaService: NormativaService) {}
 
     ngOnInit() {
         this.normativaService.index()
-            .subscribe(res => this.normativas = res);
+            .subscribe(res => {
+                this.normativas = res;
+                this.loading = true;
+            });
     }
     onDelete(normativa){
         const index = this.normativas.findIndex((normativaEl)=>{

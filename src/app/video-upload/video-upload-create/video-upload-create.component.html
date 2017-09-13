@@ -14,8 +14,8 @@
           Por favor ingresa la descripcion
         </md-error>
       </md-input-container>
-      <input type="file" placeholder="Video" ngModel name="video" #video formControlName="video">
-
+      <label for="video" class="video-file"> <md-icon>file_upload</md-icon><br> Seleccionar Video</label>
+      <input type="file" class="full-width" id="video" placeholder="Video" ngModel name="video" #video formControlName="video">
       <div class="text-right">
         <button md-button>
           <md-icon>save</md-icon>

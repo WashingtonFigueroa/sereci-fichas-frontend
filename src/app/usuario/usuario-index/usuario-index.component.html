@@ -1,4 +1,5 @@
-<md-radio-group [(ngModel)]="tipo" class="full-width" (ngModelChange)="onChange()">
+<md-progress-spinner color="accent" mode="indeterminate" class="center" *ngIf="!loading"></md-progress-spinner>
+<md-radio-group [(ngModel)]="tipo" class="full-width radio-group" (ngModelChange)="onChange()" *ngIf="loading">
     <md-radio-button value="usuario">Usuarios</md-radio-button>
     <md-radio-button value="administrador">Administradores</md-radio-button>
     <md-radio-button value="comunicador">Comunicadores</md-radio-button>

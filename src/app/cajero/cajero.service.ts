@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
+import {UsuarioService} from '../usuario/usuario.service';
 import {Http, Headers} from '@angular/http';
 import * as variables from '../const';
 @Injectable()
 export class CajeroService {
     headers = new Headers();
     base: string  = variables.base;
-    constructor(private http: Http) {
+    constructor(private http: Http, private usuarioService: UsuarioService) {
         this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        this.headers.append('Authorization', 'Bearer ' + usuarioService.getToken());
     }
 
     index(){
-        return this.http.get(this.base + 'cajeros', {headers: this.headers}).map(res=>res.json().map(data=>data));
+        return this.http.get(this.base + 'cajeros', { headers: this.headers })
+                        .map(res => res.json().map(data => data));
     }
     show(id){
         return this.http.get(this.base + 'cajeros/' + id, {headers: this.headers}).map(res=>res.json());

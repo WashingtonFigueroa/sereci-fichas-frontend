@@ -8,14 +8,18 @@ import {VideoUploadService} from '../video-upload.service';
 })
 export class VideoUploadIndexComponent implements OnInit {
     videos: any;
+    loading = false;
     constructor(private videoUploadService: VideoUploadService) {}
 
     ngOnInit() {
         this.videoUploadService.index()
-            .subscribe(videos => this.videos = videos);
+            .subscribe(videos => {
+                this.videos = videos;
+                this.loading = true;
+            });
     }
     onDelete(video){
-        const index = this.videos.findIndex((video_uploadEl)=>{
+        const index = this.videos.findIndex((video_uploadEl) => {
             return video_uploadEl.id === video.id;
         });
         this.videos.splice(index, 1);

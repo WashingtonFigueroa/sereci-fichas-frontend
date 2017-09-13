@@ -7,10 +7,13 @@ import {VentanillaService} from '../ventanilla.service';
   styleUrls: ['./ventanilla-index.component.css']
 })
 export class VentanillaIndexComponent implements OnInit {
-
     ventanillas: any[];
+    loading = false;
     constructor(private ventanillaService: VentanillaService) {
-        this.ventanillaService.index().subscribe(res => this.ventanillas = res);
+        this.ventanillaService.index().subscribe(res => {
+            this.ventanillas = res;
+            this.loading = true;
+        });
     }
     ngOnInit() {}
     onDelete(ventanilla){

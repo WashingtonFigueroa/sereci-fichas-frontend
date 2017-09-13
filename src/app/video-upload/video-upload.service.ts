@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions, RequestMethod} from '@angular/http';
+import {UsuarioService} from '../usuario/usuario.service';
 import * as variables from '../const';
 @Injectable()
 export class VideoUploadService {
@@ -7,10 +8,10 @@ export class VideoUploadService {
     headers2 = new Headers();
     base: string  = variables.base;
     video: string = variables.videos;
-    constructor(private http: Http) {
+    constructor(private http: Http, private usuarioService: UsuarioService) {
         this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
-        this.headers2.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        this.headers.append('Authorization', 'Bearer ' + usuarioService.getToken());
+        this.headers2.append('Authorization', 'Bearer ' + usuarioService.getToken());
         this.headers2.delete('Content-Type');
     }
 

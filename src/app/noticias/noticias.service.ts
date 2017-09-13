@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import * as variables from '../const';
+import {UsuarioService} from '../usuario/usuario.service';
 import 'rxjs/add/operator/map';
 @Injectable()
 export class NoticiasService {
     headers = new Headers();
     base:string  = variables.base;
-    constructor(private http: Http) {
+    constructor(private http: Http, private usuarioService: UsuarioService) {
         this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+        this.headers.append('Authorization', 'Bearer ' + usuarioService.getToken());
     }
 
     index(){

@@ -1,9 +1,10 @@
-<div class="row">
+<div class="row bg">
   <div class="col-md-offset-3 col-md-6">
       <div class="box">
           <md-card class="login-form">
               <md-card-content>
-                  <form (submit)="autenticar()" [formGroup]="loginGroup" >
+                  <form (submit)="autenticar()" [formGroup]="loginGroup">
+                      <legend class="legend-title">SARTRA</legend>
                       <md-input-container class="full-width">
                           <input mdInput placeholder="Cuenta" formControlName="cuenta" name="cuenta" autofocus>
                       </md-input-container>
@@ -11,7 +12,7 @@
                           <input mdInput placeholder="Password" type="password" formControlName="password" name="password">
                       </md-input-container>
                       <div class="text-center">
-                          <button md-button type="submit">Iniciar Sesion</button>
+                          <button md-button type="submit" md-raised-button color="primary">INICIAR SESION</button>
                       </div>
                   </form>
               </md-card-content>

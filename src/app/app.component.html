@@ -1,15 +1,17 @@
-<md-toolbar color="primary" *ngIf="router.url != '/visor' && router.url != '/login'">
-    <span>S.E.R.E.C.I.</span>
+<md-toolbar class="navegacion" color="primary" *ngIf="router.url != '/visor' && router.url != '/login' && usuarioService.getUser()!= null ">
+    <span>SASTRA - SISTEMA DE ATENCION Y SEGUIMIENTO DE TRAMITES</span>
     <span class="fill-remaining-space"></span>
-    <button md-icon-button routerLink="/visor"><md-icon>cast</md-icon></button>
-    <button md-icon-button routerLink="/videos-upload"><md-icon>cast_connected</md-icon></button>
-    <button md-icon-button [mdMenuTriggerFor]="appCategorias"><md-icon>recent_actors</md-icon></button>
-    <button md-icon-button routerLink="/asignacion-ventanillas"><md-icon>video_label</md-icon></button>
-    <button md-icon-button [mdMenuTriggerFor]="appTramites"><md-icon>description</md-icon></button>
-    <button md-icon-button routerLink="tramites"><md-icon>receipt</md-icon></button>
-    <button md-icon-button routerLink="/noticias"><md-icon>assignment</md-icon></button>
-    <button md-icon-button [mdMenuTriggerFor]="appNormativas"><md-icon>library_books</md-icon></button>
-    <button md-icon-button routerLink="/usuarios"><md-icon>account_circle</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/fichas"><md-icon mdTooltip="Fichas">cast</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/visor"><md-icon mdTooltip="Visor">cast</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/videos-upload"><md-icon mdTooltip="Video">cast_connected</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" [mdMenuTriggerFor]="appCategorias"><md-icon mdTooltip="Categorias">recent_actors</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/asignacion-ventanillas"><md-icon mdTooltip="Asignación Ventanillas">video_label</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" [mdMenuTriggerFor]="appTramites"><md-icon mdTooltip="Tramites">description</md-icon></button>
+    <button md-icon-button routerLink="tramites" *ngIf="usuarioService.getUser().tipo == 'cajero'"><md-icon mdTooltip="Asignación Tramites">receipt</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/noticias"><md-icon mdTooltip="Noticias">assignment</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" [mdMenuTriggerFor]="appNormativas"><md-icon mdTooltip="Normativas">library_books</md-icon></button>
+    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador'" routerLink="/usuarios"><md-icon mdTooltip="Usuarios">account_circle</md-icon></button>
+    {{ usuarioService.getUser().tipo }}
     <button md-icon-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon></button>
 </md-toolbar>
 <md-menu #appMenu="mdMenu">

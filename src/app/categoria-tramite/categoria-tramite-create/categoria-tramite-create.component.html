@@ -8,7 +8,7 @@
   </md-card-header>
   <md-card-content>
     <form (ngSubmit)="store()" [formGroup]="categoriaTramiteGroup">
-      <md-select ngModel name="tipo_tramite_id" formControlName="tipo_tramite_id" class="full-width">
+      <md-select ngModel placeholder="Tipo de tramite" name="tipo_tramite_id" formControlName="tipo_tramite_id" class="full-width">
         <md-option *ngFor="let tipo_tramite of tipo_tramites" [value]="tipo_tramite.id">
           {{ tipo_tramite.nombre | uppercase }}
         </md-option>

@@ -7,15 +7,11 @@ import {UsuarioService} from '../usuario.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-
-  usuario: any = null;
-  constructor(private usuarioService: UsuarioService) { }
-
+  usuario = null;
+  loading = false;
+  constructor(protected usuarioService: UsuarioService) { }
   ngOnInit() {
-    this.usuarioService.usuario().subscribe(res => {
-        this.usuario = res;
-        console.log(res);
-    });
+
   }
 
 }
