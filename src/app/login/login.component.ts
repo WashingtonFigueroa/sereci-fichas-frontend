@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UsuarioService} from '../usuario/usuario.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
     loginGroup: FormGroup;
-    constructor(private usuarioService: UsuarioService, private router: Router) { }
+
+    constructor(private usuarioService: UsuarioService, private router: Router) {
+    }
 
     ngOnInit() {
-        if(localStorage.getItem('token')){
+        if (localStorage.getItem('token')) {
             localStorage.removeItem('token');
         }
         this.loginGroup = new FormGroup({
@@ -21,19 +23,23 @@ export class LoginComponent implements OnInit {
             'password': new FormControl(null, [Validators.required])
         });
     }
-    autenticar(){
+
+    autenticar() {
         let credenciales = {
             'cuenta': this.loginGroup.value.cuenta,
             'password': this.loginGroup.value.password
         };
-        this.usuarioService.autenticar(credenciales).subscribe(res=>{
-            if(res.token){
+        this.usuarioService.autenticar(credenciales).subscribe(res => {
+            if (res.token) {
                 localStorage.setItem('token', res.token);
                 this.router.navigate(['perfil']);
                 console.log(res);
-            }else{
+            } else {
                 console.log(res);
             }
+        }, (error) => {
+            this.loginGroup.reset();
+            alert('Credenciales incorrectas');
         });
     }
 

@@ -1,35 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CategoriaService} from '../../categoria/categoria.service';
 import {FichaService} from '../ficha.service';
 
 @Component({
-  selector: 'app-ficha-create',
-  templateUrl: './ficha-create.component.html',
-  styleUrls: ['./ficha-create.component.css']
+    selector: 'app-ficha-create',
+    templateUrl: './ficha-create.component.html',
+    styleUrls: ['./ficha-create.component.css']
 })
 export class FichaCreateComponent implements OnInit {
-  categorias: any[];
-  ficha: any = null;
-  fecha: any = null;
-  constructor(private categoriaService: CategoriaService, private fichaService:FichaService) {}
+    categorias: any[];
+    ficha: any = null;
+    fecha: any = null;
 
-  ngOnInit() {
-    this.categoriaService.index()
-        .subscribe(res => this.categorias = res);
-  }
-  printFicha(){
-      let content = document.getElementById('report').outerHTML;
-      console.log(content);
-      let ventana = window.open('', '_blank', '');
-      // language=HTML
-      ventana.document.write(`
+    constructor(private categoriaService: CategoriaService, private fichaService: FichaService) {
+    }
+
+    ngOnInit() {
+        this.categoriaService.index()
+            .subscribe(res => this.categorias = res);
+    }
+
+    printFicha() {
+        let content = document.getElementById('report').outerHTML;
+        console.log(content);
+        let ventana = window.open('', '_blank', '');
+        // language=HTML
+        ventana.document.write(`
           <html>
             <head>
                 <style>
-                    @page{
+                @media screen {
+                    body {
+                        display: none;
+                    }
+                }
+                @media print {
+                    @page {
                         size: 3in 3in;
                     }
+
                     body{
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        display: block;
                         font-family: Arial;
                         font-size: 8pt;
                         margin: 0;
@@ -69,26 +83,30 @@ export class FichaCreateComponent implements OnInit {
                         width: 100%;
                         margin: 0;
                     }
+                }
                 </style>
             </head>
             <body onload="window.print();window.close()">
-                ${content}                
+                ${content}
             </body>
           </html>
       `);
-      ventana.print();
-      ventana.close();
-  }
-  store(categoria){
-      this.ficha = null;
-      this.fichaService.store(categoria).subscribe(res=>{
-          this.ficha = res;
-          this.fecha = new Date();
-          console.log(res);
-      });
-      setTimeout(()=>{
-          this.printFicha();
-      }, 1000);
-  }
+        ventana.print();
+        ventana.close();
+        const logo: any = document.getElementById('logo');
+        logo.src = 'assets/logo.png';
+    }
+
+    store(categoria) {
+        this.ficha = null;
+        this.fichaService.store(categoria).subscribe(res => {
+            this.ficha = res;
+            this.fecha = new Date();
+            console.log(res);
+        });
+        setTimeout(() => {
+            this.printFicha();
+        }, 1000);
+    }
 
 }

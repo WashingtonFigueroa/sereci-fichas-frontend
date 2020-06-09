@@ -1,32 +1,41 @@
-<md-card class="margin-bottom">
-  <md-card-header>
-    <div md-card-avatar class="header-image" (click)="toggle = !toggle" >
-      <md-icon *ngIf="toggle == false">menu</md-icon>
-      <md-icon *ngIf="toggle == true">clear</md-icon>
-    </div>
-    <md-card-title>{{ categoria_tramite.descripcion }}
-      <span *ngIf="categoria_tramite.duracion_horas > 0">(DURACION: {{ categoria_tramite.duracion_horas}} HORAS)</span>
-    </md-card-title>
-    <md-card-subtitle>
-      <md-chip-list>
-        <md-chip color="primary" selected="true">{{ categoria_tramite.tipo_tramite.nombre | uppercase }}</md-chip>
-      </md-chip-list>
-    </md-card-subtitle>
-  </md-card-header>
-  <md-card-content *ngIf="toggle == true">
-    <form (ngSubmit)="update()">
-      <md-input-container class="full-width">
-        <input mdInput ngModel placeholder="Descripcion" name="descripcion" [(ngModel)]="categoria_tramite.descripcion">
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput ngModel placeholder="Duracion en Horas" name="duracion_horas" [(ngModel)]="categoria_tramite.duracion_horas" type="number" min="0" max="72">
-      </md-input-container>
-      <div class="text-right">
-        <button md-button type="submit"><md-icon>save</md-icon> Actualizar</button>
-      </div>
-    </form>
-  </md-card-content>
-  <md-card-footer align="end" *ngIf="toggle == false">
-    <button md-icon-button (click)="destroy()"><md-icon>delete</md-icon></button>
-  </md-card-footer>
-</md-card>
+<mat-card class="margin-bottom">
+    <mat-card-header>
+        <div (click)="toggle = !toggle" class="header-image" mat-card-avatar>
+            <mat-icon *ngIf="toggle == false">menu</mat-icon>
+            <mat-icon *ngIf="toggle == true">clear</mat-icon>
+        </div>
+        <mat-card-title>{{ categoria_tramite.descripcion }}
+            <span *ngIf="categoria_tramite.duracion_horas > 0">(DURACION: {{ categoria_tramite.duracion_horas}}
+                HORAS)</span>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <mat-chip-list>
+                <mat-chip color="primary"
+                          selected="true">{{ categoria_tramite.tipo_tramite.nombre | uppercase }}</mat-chip>
+            </mat-chip-list>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngIf="toggle == true">
+        <form (ngSubmit)="update()">
+            <mat-input-container class="full-width">
+                <input [(ngModel)]="categoria_tramite.descripcion" matInput name="descripcion" ngModel
+                       placeholder="Descripcion">
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input [(ngModel)]="categoria_tramite.duracion_horas" matInput max="72" min="0"
+                       name="duracion_horas" ngModel placeholder="Duracion en Horas" type="number">
+            </mat-input-container>
+            <div class="text-right">
+                <button mat-button type="submit">
+                    <mat-icon>save</mat-icon>
+                    Actualizar
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer *ngIf="toggle == false" align="end">
+        <button (click)="destroy()" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-footer>
+</mat-card>

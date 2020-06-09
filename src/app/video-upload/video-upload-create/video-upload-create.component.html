@@ -1,28 +1,29 @@
-<md-card>
-  <md-card-header>
-    <div md-card-avatar class="header-image">
-      <md-icon>cast_connected</md-icon>
-    </div>
-    <md-card-title>Registrar Video</md-card-title>
-    <md-card-subtitle>*Los videos seran visualizados en lel visor</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-    <form (ngSubmit)="store()" *ngIf="!uploading" [formGroup]="videoGroup">
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
-        <md-error *ngIf="!videoGroup.get('descripcion').valid && videoGroup.get('descripcion').touched">
-          Por favor ingresa la descripcion
-        </md-error>
-      </md-input-container>
-      <label for="video" class="video-file"> <md-icon>file_upload</md-icon><br> Seleccionar Video</label>
-      <input type="file" class="full-width" id="video" placeholder="Video" ngModel name="video" #video formControlName="video">
-      <div class="text-right">
-        <button md-button>
-          <md-icon>save</md-icon>
-          Guardar
-        </button>
-      </div>
-    </form>
-    <md-progress-spinner color="primary" mode="indeterminate" class="progress-spinner-center" *ngIf="uploading"></md-progress-spinner>
-  </md-card-content>
-</md-card>
+<mat-card>
+    <mat-card-header>
+        <div class="header-image" mat-card-avatar>
+            <mat-icon>cast_connected</mat-icon>
+        </div>
+        <mat-card-title>Registrar Video</mat-card-title>
+        <mat-card-subtitle>*Los videos seran visualizados en el visor</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="store()" *ngIf="!uploading" [formGroup]="videoGroup">
+            <mat-input-container class="full-width">
+                <input formControlName="descripcion" matInput name="descripcion" placeholder="Descripcion">
+                <mat-error *ngIf="!videoGroup.get('descripcion').valid && videoGroup.get('descripcion').touched">
+                    Por favor ingresa la descripcion
+                </mat-error>
+            </mat-input-container>
+            <!--      <label for="video" class="video-file"> <mat-icon>file_upload</mat-icon><br> Seleccionar Video</label>-->
+            <input #video id="video" name="video" placeholder="Video" type="file">
+            <div class="text-right">
+                <button mat-button>
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </form>
+        <mat-progress-spinner *ngIf="uploading" class="progress-spinner-center" color="primary"
+                              mode="indeterminate"></mat-progress-spinner>
+    </mat-card-content>
+</mat-card>

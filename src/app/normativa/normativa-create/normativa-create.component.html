@@ -1,32 +1,32 @@
-<md-card>
-  <md-card-header>
-    <div md-card-avatar class="header-image">
-      <md-icon>assignment</md-icon>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="header-image">
+      <mat-icon>assignment</mat-icon>
     </div>
-    <md-card-title>Registrar Normativa</md-card-title>
-    <md-card-subtitle>*Las normativas son aplicadas acorde a ley</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
+    <mat-card-title>Registrar Normativa</mat-card-title>
+    <mat-card-subtitle>*Las normativas son aplicadas acorde a ley</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
     <form (ngSubmit)="store()" [formGroup]="normativaGroup">
 
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Codigo: Res. 080/2012" ngModel name="codigo" formControlName="codigo">
-        <md-error *ngIf="!normativaGroup.get('codigo').valid && normativaGroup.get('codigo').touched">
+      <mat-input-container class="full-width">
+        <input matInput placeholder="Codigo: Res. 080/2012" ngModel name="codigo" formControlName="codigo">
+        <mat-error *ngIf="!normativaGroup.get('codigo').valid && normativaGroup.get('codigo').touched">
           Por favor ingrese el codigo segun normativa
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
-        <md-error *ngIf="!normativaGroup.get('descripcion').valid && normativaGroup.get('descripcion').touched">
+        </mat-error>
+      </mat-input-container>
+      <mat-input-container class="full-width">
+        <input matInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
+        <mat-error *ngIf="!normativaGroup.get('descripcion').valid && normativaGroup.get('descripcion').touched">
           Por favor ingresa la descripcion
-        </md-error>
-      </md-input-container>
+        </mat-error>
+      </mat-input-container>
       <div class="text-right">
-        <button md-button [disabled]="!normativaGroup.valid && normativaGroup.touched" >
-          <md-icon>save</md-icon>
+        <button mat-button [disabled]="!normativaGroup.valid && normativaGroup.touched" >
+          <mat-icon>save</mat-icon>
           Guardar
         </button>
       </div>
     </form>
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>

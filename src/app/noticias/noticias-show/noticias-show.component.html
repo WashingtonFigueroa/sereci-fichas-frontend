@@ -1,40 +1,45 @@
-<md-card class="margin-bottom">
-    <md-card-header>
-        <div md-card-avatar class="header-image" (click)="toggle = !toggle" >
-            <md-icon *ngIf="toggle == false">menu</md-icon>
-            <md-icon *ngIf="toggle == true">clear</md-icon>
+<mat-card class="margin-bottom">
+    <mat-card-header>
+        <div (click)="toggle = !toggle" class="header-image" mat-card-avatar>
+            <mat-icon *ngIf="toggle == false">menu</mat-icon>
+            <mat-icon *ngIf="toggle == true">clear</mat-icon>
         </div>
-        <md-card-title>{{ noticia.descripcion }}</md-card-title>
-        <md-card-subtitle>
-            <md-chip-list>
-                <md-chip color="primary" selected="true" *ngIf="noticia.habilitado == true">Habilitado</md-chip>
-                <md-chip color="accent" selected="true" *ngIf="noticia.habilitado == false">
+        <mat-card-title>{{ noticia.descripcion }}</mat-card-title>
+        <mat-card-subtitle>
+            <mat-chip-list>
+                <mat-chip *ngIf="noticia.habilitado == true" color="primary" selected="true">Habilitado</mat-chip>
+                <mat-chip *ngIf="noticia.habilitado == false" color="accent" selected="true">
                     Desabilitado
-                </md-chip>
-            </md-chip-list>
-        </md-card-subtitle>
-    </md-card-header>
-    <md-card-content *ngIf="toggle == true">
-        <form (ngSubmit)="update()">
-            <md-radio-group class="full-width" placeholder="Habilitado" id="habilitado" name="habilitado" [(ngModel)]="noticia.habilitado">
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngIf="toggle == true"><form (ngSubmit)="update()">
+            <md-radio-group [(ngModel)]="noticia.habilitado" class="full-width" id="habilitado" name="habilitado"
+                            placeholder="Habilitado">
                 <div class="row margin-bottom">
                     <div class="col-md-6">
-                        <md-radio-button value=1>Habilitado</md-radio-button>
+                        <mat-radio-button value=1>Habilitado</mat-radio-button>
                     </div>
                     <div class="col-md-6">
-                        <md-radio-button value=0>Desabilitado</md-radio-button>
+                        <mat-radio-button value=0>Desabilitado</mat-radio-button>
                     </div>
                 </div>
             </md-radio-group>
-            <md-input-container class="full-width">
-                <input mdInput ngModel placeholder="Descripcion" name="descripcion" [(ngModel)]="noticia.descripcion">
-            </md-input-container>
+            <mat-input-container class="full-width">
+                <input [(ngModel)]="noticia.descripcion" matInput name="descripcion" ngModel placeholder="Descripcion">
+            </mat-input-container>
             <div class="text-right">
-                <button md-button type="submit"><md-icon>save</md-icon> Actualizar</button>
+                <button mat-button type="submit">
+                    <mat-icon>save</mat-icon>
+                    Actualizar
+                </button>
             </div>
         </form>
-    </md-card-content>
-    <md-card-footer align="end" *ngIf="toggle == false">
-        <button md-icon-button (click)="destroy()"><md-icon>delete</md-icon></button>
-    </md-card-footer>
-</md-card>
+    </mat-card-content>
+    <mat-card-footer *ngIf="toggle == false" align="end">
+        <button (click)="destroy()" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-footer>
+</mat-card>

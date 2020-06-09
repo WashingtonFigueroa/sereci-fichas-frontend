@@ -1,6 +1,6 @@
-<md-progress-spinner color="accent" mode="indeterminate" class="center" *ngIf="!loading"></md-progress-spinner>
+<mat-progress-spinner *ngIf="!loading" class="center" color="accent" mode="indeterminate"></mat-progress-spinner>
 <app-articulo-show
-        *ngFor="let articulo of articulos"
-        [articulo]="articulo"
-        (destroyArticulo)="onDelete($event)">
+    (destroyArticulo)="onDelete($event)"
+    *ngFor="let articulo of articulos"
+    [articulo]="articulo">
 </app-articulo-show>

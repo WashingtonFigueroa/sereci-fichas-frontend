@@ -1,22 +1,21 @@
-<div class="row bg">
-  <div class="col-md-offset-3 col-md-6">
-      <div class="box">
-          <md-card class="login-form">
-              <md-card-content>
-                  <form (submit)="autenticar()" [formGroup]="loginGroup">
-                      <legend class="legend-title">SARTRA</legend>
-                      <md-input-container class="full-width">
-                          <input mdInput placeholder="Cuenta" formControlName="cuenta" name="cuenta" autofocus>
-                      </md-input-container>
-                      <md-input-container class="full-width">
-                          <input mdInput placeholder="Password" type="password" formControlName="password" name="password">
-                      </md-input-container>
-                      <div class="text-center">
-                          <button md-button type="submit" md-raised-button color="primary">INICIAR SESION</button>
-                      </div>
-                  </form>
-              </md-card-content>
-          </md-card>
-      </div>
-  </div>
-</div>
+<mat-card class="card">
+    <mat-card-header>
+        <img class="card-logo" src="assets/logo.png">
+        <legend class="legend-title">SARTRA</legend>
+    </mat-card-header>
+    <mat-card-content>
+        <form (submit)="autenticar()" [formGroup]="loginGroup" class="login-form">
+            <mat-input-container class="full-width">
+                <input autofocus formControlName="cuenta"
+                       oninput="this.value = this.value.toLowerCase()"
+                       matInput name="cuenta" placeholder="Cuenta">
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="password" matInput name="password" placeholder="Password" type="password">
+            </mat-input-container>
+            <div class="button-container">
+                <button color="primary" mat-button mat-raised-button type="submit">INGRESAR AL SISTEMA</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

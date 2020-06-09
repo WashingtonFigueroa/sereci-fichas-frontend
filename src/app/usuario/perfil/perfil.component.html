@@ -1,32 +1,37 @@
 <div class="row padding">
     <div class="col-md-offset-3 col-md-6 margin-top">
-        <md-card *ngIf="usuarioService.user!=null" class="card">
-            <md-card-header>
-                <div md-card-avatar class="header-image">
-                    <md-icon>account_circle</md-icon>
+        <mat-card *ngIf="usuarioService.user!=null" class="card">
+            <mat-card-header>
+                <div class="header-image" mat-card-avatar>
+                    <mat-icon>account_circle</mat-icon>
                 </div>
-                <md-card-title>Perfil de {{ usuarioService.user.tipo }}</md-card-title>
-                <md-card-subtitle>*Informacion de usuario autenticado</md-card-subtitle>
-            </md-card-header>
-            <md-card-content>
+                <mat-card-title>Perfil de {{ usuarioService.user.tipo }}</mat-card-title>
+                <mat-card-subtitle>*Información de usuario autenticado</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
                 <form>
-                    <md-input-container class="full-width">
-                        <input mdInput placeholder="Cuenta" [(ngModel)]="usuarioService.user.cuenta" name="cuenta" disabled>
-                    </md-input-container>
-                    <md-input-container class="full-width">
-                        <input mdInput placeholder="Nombres" [(ngModel)]="usuarioService.user.nombres" name="nombres" disabled>
-                    </md-input-container>
-                    <md-input-container class="full-width">
-                        <input mdInput placeholder="Apellidos" [(ngModel)]="usuarioService.user.apellidos" name="apellidos" disabled>
-                    </md-input-container>
-                    <md-input-container class="full-width">
-                        <input mdInput placeholder="Carnet" [(ngModel)]="usuarioService.user.carnet" name="carnet" disabled>
-                    </md-input-container>
-                    <md-input-container class="full-width">
-                        <input mdInput placeholder="Celular" [(ngModel)]="usuarioService.user.celular" name="celular" disabled>
-                    </md-input-container>
+                    <mat-input-container class="full-width">
+                        <input [(ngModel)]="usuarioService.user.cuenta" disabled matInput name="cuenta"
+                               placeholder="Cuenta">
+                    </mat-input-container>
+                    <mat-input-container class="full-width">
+                        <input [(ngModel)]="usuarioService.user.nombres" disabled matInput name="nombres"
+                               placeholder="Nombres">
+                    </mat-input-container>
+                    <mat-input-container class="full-width">
+                        <input [(ngModel)]="usuarioService.user.apellidos" disabled matInput
+                               name="apellidos" placeholder="Apellidos">
+                    </mat-input-container>
+                    <mat-input-container class="full-width">
+                        <input [(ngModel)]="usuarioService.user.carnet" disabled matInput name="carnet"
+                               placeholder="Carnet">
+                    </mat-input-container>
+                    <mat-input-container class="full-width">
+                        <input [(ngModel)]="usuarioService.user.celular" disabled matInput name="celular"
+                               placeholder="Celular">
+                    </mat-input-container>
                 </form>
-            </md-card-content>
-        </md-card>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>

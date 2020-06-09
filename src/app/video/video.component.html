@@ -1,7 +1,9 @@
 <vg-player>
     <vg-overlay-play></vg-overlay-play>
     <vg-buffering></vg-buffering>
-    <video [vgMedia]="media" #media id="singleVideo" preload="auto" autoplay crossorigin>
+    <video #media [vgMedia]="media"
+           [volume]="volume"
+           autoplay crossorigin id="singleVideo" loop preload="auto">
         <source *ngFor="let video of videos" [src]="video.file" type="video/mp4">
     </video>
 </vg-player>

@@ -1,31 +1,37 @@
-<md-card class="margin-bottom">
-  <md-card-header>
-    <div md-card-avatar class="header-image" (click)="toggle = !toggle" >
-      <md-icon *ngIf="toggle == false">menu</md-icon>
-      <md-icon *ngIf="toggle == true">clear</md-icon>
-    </div>
-    <md-card-title> NORMATIVA {{ articulo.normativa.codigo | uppercase }} {{ articulo.numero }} {{ articulo.inciso | uppercase }}</md-card-title>
-    <md-card-subtitle>
-      <p>{{ articulo.descripcion }}</p>
-    </md-card-subtitle>
-  </md-card-header>
-  <md-card-content *ngIf="toggle == true">
-    <form (ngSubmit)="update()">
-      <md-input-container class="full-width">
-        <input mdInput ngModel placeholder="numero" name="numero" [(ngModel)]="articulo.numero">
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput ngModel placeholder="Inciso. Ej. c" name="inciso" [(ngModel)]="articulo.inciso">
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput ngModel placeholder="Descripcion" name="descripcion" [(ngModel)]="articulo.descripcion">
-      </md-input-container>
-      <div class="text-right">
-        <button md-button type="submit"><md-icon>save</md-icon> Actualizar</button>
-      </div>
-    </form>
-  </md-card-content>
-  <md-card-footer align="end" *ngIf="toggle == false">
-    <button md-icon-button (click)="destroy()"><md-icon>delete</md-icon></button>
-  </md-card-footer>
-</md-card>
+<mat-card class="margin-bottom">
+    <mat-card-header>
+        <div (click)="toggle = !toggle" class="header-image" mat-card-avatar>
+            <mat-icon *ngIf="toggle == false">menu</mat-icon>
+            <mat-icon *ngIf="toggle == true">clear</mat-icon>
+        </div>
+        <mat-card-title>
+            NORMATIVA {{ articulo.normativa.codigo | uppercase }} {{ articulo.numero }} {{ articulo.inciso | uppercase }}</mat-card-title>
+        <mat-card-subtitle>
+            <p>{{ articulo.descripcion }}</p>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngIf="toggle == true">
+        <form (ngSubmit)="update()">
+            <mat-input-container class="full-width">
+                <input [(ngModel)]="articulo.numero" matInput name="numero" ngModel placeholder="numero">
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input [(ngModel)]="articulo.inciso" matInput name="inciso" ngModel placeholder="Inciso. Ej. c">
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input [(ngModel)]="articulo.descripcion" matInput name="descripcion" ngModel placeholder="Descripcion">
+            </mat-input-container>
+            <div class="text-right">
+                <button mat-button type="submit">
+                    <mat-icon>save</mat-icon>
+                    Actualizar
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-footer *ngIf="toggle == false" align="end">
+        <button (click)="destroy()" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-footer>
+</mat-card>

@@ -1,16 +1,16 @@
-<md-card class="margin-bottom">
-  <md-card-header>
-    <md-card-title>VENTANILLA {{ asignacion_categoria.ventanilla.numero }} - {{ asignacion_categoria.categoria.descripcion }}</md-card-title>
-    <md-card-subtitle>
-      <md-chip-list>
-        <md-chip color="primary" selected="true">Prioridad {{ asignacion_categoria.categoria.prioridad}}</md-chip>
-      </md-chip-list>
-    </md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
+<mat-card class="margin-bottom">
+  <mat-card-header>
+    <mat-card-title>VENTANILLA {{ asignacion_categoria.ventanilla.numero }} - {{ asignacion_categoria.categoria.descripcion }}</mat-card-title>
+    <mat-card-subtitle>
+      <mat-chip-list>
+        <mat-chip color="primary" selected="true">Prioridad {{ asignacion_categoria.categoria.prioridad}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
 
-  </md-card-content>
-  <md-card-footer align="end">
-    <button md-icon-button (click)="destroy()"><md-icon>delete</md-icon></button>
-  </md-card-footer>
-</md-card>
+  </mat-card-content>
+  <mat-card-footer align="end">
+    <button mat-icon-button (click)="destroy()"><mat-icon>delete</mat-icon></button>
+  </mat-card-footer>
+</mat-card>

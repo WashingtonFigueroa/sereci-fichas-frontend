@@ -1,0 +1,31 @@
+<mat-card *ngIf="datos.status === 404">
+    <mat-card-header>
+        Usted no tiene asignado una ventanilla
+    </mat-card-header>
+    <mat-card-content>
+        <strong>Comuniquese con el area de TICs</strong>
+    </mat-card-content>
+</mat-card>
+<mat-card *ngIf="datos.status === 200">
+    <mat-card-header>
+        VENTANILLA <span>{{ datos.body?.ventanilla?.numero}}</span>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            FICHA {{ control.body?.ficha?.numero }}
+        </p>
+        <p>
+            {{ control.body?.ficha?.categoria.descripcion }}
+        </p>
+        <button (click)="llamarFicha()" *ngIf="control.status === 404"
+                color="primary" mat-button mat-raised-button>
+            Llamar nueva ficha
+        </button>
+        <button (click)="miTramite()" *ngIf="control.status === 200" color="primary" mat-button mat-raised-button>
+            Re-llamar
+        </button>
+        <button (click)="finalizarTramite()" *ngIf="control.status === 200" color="primary" mat-button
+                mat-raised-button>Terminar atención
+        </button>
+    </mat-card-content>
+</mat-card>

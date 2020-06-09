@@ -1,54 +1,57 @@
-<md-card>
-  <md-card-header>
-    <div md-card-avatar class="header-image">
-      <md-icon>assignment</md-icon>
-    </div>
-    <md-card-title>Registrar Usuario</md-card-title>
-    <md-card-subtitle>*Registro de usuarios con sus diferentes roles</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-    <form (ngSubmit)="store()" [formGroup]="usuarioGroup">
-        <md-select placeholder="Tipo de usuario" name="tipo"  formControlName="tipo" class="full-width margin-bottom">
-            <md-option *ngFor="let tipo of tipos" [value]="tipo.value">
-                {{tipo.value}}
-            </md-option>
-        </md-select>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Cuenta" ngModel name="cuenta" formControlName="cuenta">
-        <md-error *ngIf="!usuarioGroup.get('cuenta').valid && usuarioGroup.get('cuenta').touched">
-          Por favor ingresa la cuenta
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Nombres" ngModel name="nombres" formControlName="nombres">
-        <md-error *ngIf="!usuarioGroup.get('nombres').valid && usuarioGroup.get('nombres').touched">
-          Por favor ingresa los nombres
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Apellidos" ngModel name="apellidos" formControlName="apellidos">
-        <md-error *ngIf="!usuarioGroup.get('apellidos').valid && usuarioGroup.get('apellidos').touched">
-          Por favor ingresa los apellidos
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Carnet" ngModel name="carnet" formControlName="carnet">
-        <md-error *ngIf="!usuarioGroup.get('carnet').valid && usuarioGroup.get('carnet').touched">
-          Por favor ingresa el carnet
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Celular" ngModel name="celular" formControlName="celular">
-        <md-error *ngIf="!usuarioGroup.get('celular').valid && usuarioGroup.get('celular').touched">
-          Por favor ingresa el numero de celular
-        </md-error>
-      </md-input-container>
-      <div class="text-right">
-        <button md-button [disabled]="!usuarioGroup.valid && usuarioGroup.touched" >
-          <md-icon>save</md-icon>
-          Guardar
-        </button>
-      </div>
-    </form>
-  </md-card-content>
-</md-card>
+<mat-card>
+    <mat-card-header>
+        <div class="header-image" mat-card-avatar>
+            <mat-icon>assignment</mat-icon>
+        </div>
+        <mat-card-title>Registrar Usuario</mat-card-title>
+        <mat-card-subtitle>*Registro de usuarios con sus diferentes roles</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="store()" [formGroup]="usuarioGroup">
+            <mat-select class="full-width margin-bottom"
+                        formControlName="tipo"
+                        name="tipo"
+                        placeholder="Tipo de usuario">
+                <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                    {{tipo.value}}
+                </mat-option>
+            </mat-select>
+            <mat-input-container class="full-width">
+                <input formControlName="cuenta" matInput name="cuenta" ngModel placeholder="Cuenta">
+                <mat-error *ngIf="!usuarioGroup.get('cuenta').valid && usuarioGroup.get('cuenta').touched">
+                    Por favor ingresa la cuenta
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="nombres" matInput name="nombres" ngModel placeholder="Nombres">
+                <mat-error *ngIf="!usuarioGroup.get('nombres').valid && usuarioGroup.get('nombres').touched">
+                    Por favor ingresa los nombres
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="apellidos" matInput name="apellidos" ngModel placeholder="Apellidos">
+                <mat-error *ngIf="!usuarioGroup.get('apellidos').valid && usuarioGroup.get('apellidos').touched">
+                    Por favor ingresa los apellidos
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="carnet" matInput name="carnet" ngModel placeholder="Carnet">
+                <mat-error *ngIf="!usuarioGroup.get('carnet').valid && usuarioGroup.get('carnet').touched">
+                    Por favor ingresa el carnet
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="celular" matInput name="celular" ngModel placeholder="Celular">
+                <mat-error *ngIf="!usuarioGroup.get('celular').valid && usuarioGroup.get('celular').touched">
+                    Por favor ingresa el numero de celular
+                </mat-error>
+            </mat-input-container>
+            <div class="text-right">
+                <button [disabled]="!usuarioGroup.valid && usuarioGroup.touched" mat-button>
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

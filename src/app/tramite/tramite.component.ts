@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FichaService} from '../ficha/ficha.service';
 import {SolicitanteService} from '../solicitante/solicitante.service';
 import {MensajeDialogComponent} from '../mensaje-dialog/mensaje-dialog.component';
-import {MdDialog} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TipoTramiteService} from '../tipo-tramite/tipo-tramite.service';
 import {CategoriaTramiteService} from '../categoria-tramite/categoria-tramite.service';
@@ -12,9 +12,9 @@ import {SolicitudAutorizacionService} from '../solicitud-autorizacion/solicitud-
 import {TramiteService} from './tramite.service';
 
 @Component({
-  selector: 'app-tramite',
-  templateUrl: './tramite.component.html',
-  styleUrls: ['./tramite.component.css']
+    selector: 'app-tramite',
+    templateUrl: './tramite.component.html',
+    styleUrls: ['./tramite.component.css']
 })
 export class TramiteComponent implements OnInit {
     /*
@@ -25,35 +25,35 @@ export class TramiteComponent implements OnInit {
     *  3 SELECCIONAR TIPO TRAMITE Y CATEGORIA TRAMITE
     *
     * */
-  estado = 'atendido';
-  response: any;
-  paso = 0;
-  tipo_tramites: any[];
-  categoria_tramites: any[] = null;
-  tipo_tramite_id: any;
-  categoria_tramite: any = null;
-  ficha: any = null;
-  asignacion_ventanillas: any[] = null;
-  ventanilla: any = null;
-  tramite = {
-      'ventanilla_id': 0,
-      'ficha_id': 0,
-      'categoria_tramite_id': 0,
-      'inscrito_id': 0,
-      'solicitud_autorizacion_id': 0,
-      'con_prueba': false,
-      'glosa': ' ',
-      'parentesco': ''
-  };
-  solicitud_autorizacion = {
-      'rectificacion': false,
-      'complementacion': false,
-      'ratificacion': false,
-      'cambio': false,
-      'cancelacion': false,
-      'reposicion': false,
-      'traspaso': false
-  };
+    estado = 'atendido';
+    response: any;
+    paso = 0;
+    tipo_tramites: any[];
+    categoria_tramites: any[] = null;
+    tipo_tramite_id: any;
+    categoria_tramite: any = null;
+    ficha: any = null;
+    asignacion_ventanillas: any[] = null;
+    ventanilla: any = null;
+    tramite = {
+        'ventanilla_id': 0,
+        'ficha_id': 0,
+        'categoria_tramite_id': 0,
+        'inscrito_id': 0,
+        'solicitud_autorizacion_id': 0,
+        'con_prueba': false,
+        'glosa': ' ',
+        'parentesco': ''
+    };
+    solicitud_autorizacion = {
+        'rectificacion': false,
+        'complementacion': false,
+        'ratificacion': false,
+        'cambio': false,
+        'cancelacion': false,
+        'reposicion': false,
+        'traspaso': false
+    };
 
     /*paso 1*/
     busqueda_solicitante: any;
@@ -74,178 +74,179 @@ export class TramiteComponent implements OnInit {
     busquedaInscritoGroup: FormGroup;
     inscritos: any[];
     inscrito = {
-      'nombres': '',
-      'apellidos': '',
+        'nombres': '',
+        'apellidos': '',
     };
+
     /*paso 4*/
-  constructor(private fichaService: FichaService,
-              private solicitanteService: SolicitanteService,
-              private categoriaTramiteService: CategoriaTramiteService,
-              private tipoTramiteService: TipoTramiteService,
-              private inscritoService: InscritoService,
-              private cajeroService: CajeroService,
-              private tramiteService: TramiteService,
-              private solicitudAutorizacionService: SolicitudAutorizacionService,
-              public dialog: MdDialog) {
-  }
+    constructor(private fichaService: FichaService,
+                private solicitanteService: SolicitanteService,
+                private categoriaTramiteService: CategoriaTramiteService,
+                private tipoTramiteService: TipoTramiteService,
+                private inscritoService: InscritoService,
+                private cajeroService: CajeroService,
+                private tramiteService: TramiteService,
+                private solicitudAutorizacionService: SolicitudAutorizacionService,
+                public dialog: MatDialog) {
+    }
 
-  ngOnInit() {
-      this.busquedaSolicitanteGroup = new FormGroup({
-          'busqueda_solicitante': new FormControl(null, Validators.required)
-      });
+    ngOnInit() {
+        this.busquedaSolicitanteGroup = new FormGroup({
+            'busqueda_solicitante': new FormControl(null, Validators.required)
+        });
 
-      this.solicitanteGroup = new FormGroup({
-          'nombres': new FormControl(null, Validators.required),
-          'apellidos': new FormControl(null, Validators.required),
-          'carnet': new FormControl(null, Validators.required),
-          'celular': new FormControl(null, Validators.required),
-      });
+        this.solicitanteGroup = new FormGroup({
+            'nombres': new FormControl(null, Validators.required),
+            'apellidos': new FormControl(null, Validators.required),
+            'carnet': new FormControl(null, Validators.required),
+            'celular': new FormControl(null, Validators.required),
+        });
 
-      this.busquedaInscritoGroup = new FormGroup({
-          'busqueda_inscrito': new FormControl(null, Validators.required)
-      });
-      this.inscritoGroup = new FormGroup({
-          'nombres' : new FormControl(null, Validators.required),
-          'apellidos' : new FormControl(null, Validators.required)
-      });
-      this.tipoTramiteService.index().subscribe(res => this.tipo_tramites = res);
-      this.cajeroService.getAsignacionVentanillas().subscribe(res => this.asignacion_ventanillas = res);
-  }
+        this.busquedaInscritoGroup = new FormGroup({
+            'busqueda_inscrito': new FormControl(null, Validators.required)
+        });
+        this.inscritoGroup = new FormGroup({
+            'nombres': new FormControl(null, Validators.required),
+            'apellidos': new FormControl(null, Validators.required)
+        });
+        this.tipoTramiteService.index().subscribe(res => this.tipo_tramites = res);
+        this.cajeroService.getAsignacionVentanillas().subscribe(res => this.asignacion_ventanillas = res);
+    }
 
-  seleccionarVentanilla(ventanilla){
-      this.tramite.ventanilla_id = ventanilla.id;
-      this.ventanilla = ventanilla;
-  }
+    seleccionarVentanilla(ventanilla) {
+        this.tramite.ventanilla_id = ventanilla.id;
+        this.ventanilla = ventanilla;
+    }
 
-  llamarFicha() {
-    this.fichaService.llamarFicha(this.ventanilla.id).subscribe(res => {
-        if (res.error) {
+    llamarFicha() {
+        this.fichaService.llamarFicha(this.ventanilla.id).subscribe(res => {
+            if (res.error) {
+                const dialogRef = this.dialog.open(MensajeDialogComponent, {
+                    width: '400px',
+                    height: '150px',
+                    data: {mensaje: res.error}
+                });
+                dialogRef.afterClosed().subscribe(result => {
+                    console.log('The dialog was closed');
+                    console.log(result);
+                    this.ventanilla = null;
+                });
+                this.paso = 0;
+            } else {
+                this.paso = 1;
+                this.ficha = res;
+                this.tramite.ficha_id = res.id;
+                this.estado = 'ventanilla';
+            }
+            console.log(res);
+        });
+    }
+
+    buscar() {
+        const data = {
+            'busqueda_solicitante': this.busquedaSolicitanteGroup.value.busqueda_solicitante
+        };
+        this.solicitanteService.buscar(data).subscribe(res => {
+            if (res.error) {
+                const dialogRef = this.dialog.open(MensajeDialogComponent, {
+                    width: '400px',
+                    height: '150px',
+                    data: {mensaje: res.error}
+                });
+                dialogRef.afterClosed().subscribe(result => {
+                    console.log('The dialog was closed');
+                    console.log(result);
+                });
+                if (res.code === 404) {
+                    this.paso = 1.1;
+                }
+            } else {
+                this.solicitantes = res;
+                console.log(res);
+                console.log('paso 1.2');
+                this.paso = 1.2;
+            }
+        });
+    }
+
+    guardarSolicitante() {
+        const data = {
+            'nombres': this.solicitanteGroup.value.nombres,
+            'apellidos': this.solicitanteGroup.value.apellidos,
+            'carnet': this.solicitanteGroup.value.carnet,
+            'celular': this.solicitanteGroup.value.celular
+        };
+        this.solicitanteService.store(data).subscribe(res => {
+            const message = 'El solicitante ' + res.nombres.toUpperCase() + ' ' + res.apellidos.toUpperCase() +
+                ' ha sido registrado exitosamente';
+            this.solicitante = res;
             const dialogRef = this.dialog.open(MensajeDialogComponent, {
                 width: '400px',
                 height: '150px',
-                data: { mensaje: res.error }
+                data: {mensaje: message}
             });
             dialogRef.afterClosed().subscribe(result => {
                 console.log('The dialog was closed');
                 console.log(result);
-                this.ventanilla = null;
             });
-            this.paso = 0;
-        } else {
-            this.paso = 1;
-            this.ficha = res;
-            this.tramite.ficha_id = res.id;
-            this.estado = 'ventanilla';
+            this.paso = 2;
+            this.solicitanteGroup.reset();
+        });
+    }
+
+    seleccionarSolicitante(record) {
+        this.solicitante = record;
+        this.paso = 2;
+    }
+
+    getCategoriaTramites(tipo_tramite_id) {
+        this.tipoTramiteService.getCategoriaTramites(tipo_tramite_id).subscribe(res => this.categoria_tramites = res);
+    }
+
+    seleccionarCategoriaTramite(categoria_tramite_id) {
+        this.categoriaTramiteService.show(categoria_tramite_id).subscribe(res => {
+            console.log(res);
+            this.categoria_tramite = res;
+        });
+    }
+
+    irPaso3() {
+        if (this.tramite.categoria_tramite_id != 0) {
+            this.paso = 3;
         }
-        console.log(res);
-    });
-  }
+    }
 
-  buscar() {
-      const data = {
-          'busqueda_solicitante' : this.busquedaSolicitanteGroup.value.busqueda_solicitante
-      };
-      this.solicitanteService.buscar(data).subscribe(res => {
-          if (res.error) {
-              const dialogRef = this.dialog.open(MensajeDialogComponent, {
-                  width: '400px',
-                  height: '150px',
-                  data: { mensaje: res.error }
-              });
-              dialogRef.afterClosed().subscribe(result => {
-                  console.log('The dialog was closed');
-                  console.log(result);
-              });
-              if (res.code === 404){
-                    this.paso = 1.1;
-              }
-          }else{
-              this.solicitantes = res;
-              console.log(res);
-              console.log('paso 1.2');
-              this.paso = 1.2;
-          }
-      });
-  }
-
-  guardarSolicitante(){
-      const data = {
-          'nombres' : this.solicitanteGroup.value.nombres,
-          'apellidos' : this.solicitanteGroup.value.apellidos,
-          'carnet' : this.solicitanteGroup.value.carnet,
-          'celular' : this.solicitanteGroup.value.celular
-      };
-      this.solicitanteService.store(data).subscribe(res => {
-          const message = 'El solicitante ' + res.nombres.toUpperCase() + ' ' + res.apellidos.toUpperCase() +
-                          ' ha sido registrado exitosamente';
-          this.solicitante = res;
-          const dialogRef = this.dialog.open(MensajeDialogComponent, {
-              width: '400px',
-              height: '150px',
-              data: { mensaje: message}
-          });
-          dialogRef.afterClosed().subscribe(result => {
-              console.log('The dialog was closed');
-              console.log(result);
-          });
-          this.paso = 2;
-          this.solicitanteGroup.reset();
-      });
-  }
-
-  seleccionarSolicitante(record){
-    this.solicitante = record;
-    this.paso = 2;
-  }
-
-  getCategoriaTramites(tipo_tramite_id){
-      this.tipoTramiteService.getCategoriaTramites(tipo_tramite_id).subscribe( res => this.categoria_tramites = res );
-  }
-
-  seleccionarCategoriaTramite(categoria_tramite_id){
-      this.categoriaTramiteService.show(categoria_tramite_id).subscribe(res => {
-          console.log(res);
-          this.categoria_tramite = res;
-      });
-  }
-
-  irPaso3() {
-      if(this.tramite.categoria_tramite_id != 0){
-          this.paso = 3;
-      }
-  }
-
-  buscarInscrito() {
-      const data = {
-          'busqueda_inscrito' : this.busquedaInscritoGroup.value.busqueda_inscrito
-      };
-      this.inscritoService.buscar(data).subscribe(res => {
-          if (res.error) {
-              const dialogRef = this.dialog.open(MensajeDialogComponent, {
-                  width: '400px',
-                  height: '150px',
-                  data: { mensaje: res.error }
-              });
-              dialogRef.afterClosed().subscribe(result => {
-                  console.log('The dialog was closed');
-                  console.log(result);
-              });
-              if (res.code === 404){
-                  this.paso = 3.1; // obs
-              }
-          }else{
-              this.inscritos = res;
-              console.log(res);
-              console.log('paso 3.2'); // listar inscritos
-              this.paso = 3.2;
-          }
-      });
-  }
-
-  guardarInscrito() {
+    buscarInscrito() {
         const data = {
-            'nombres' : this.inscritoGroup.value.nombres,
-            'apellidos' : this.inscritoGroup.value.apellidos,
+            'busqueda_inscrito': this.busquedaInscritoGroup.value.busqueda_inscrito
+        };
+        this.inscritoService.buscar(data).subscribe(res => {
+            if (res.error) {
+                const dialogRef = this.dialog.open(MensajeDialogComponent, {
+                    width: '400px',
+                    height: '150px',
+                    data: {mensaje: res.error}
+                });
+                dialogRef.afterClosed().subscribe(result => {
+                    console.log('The dialog was closed');
+                    console.log(result);
+                });
+                if (res.code === 404) {
+                    this.paso = 3.1; // obs
+                }
+            } else {
+                this.inscritos = res;
+                console.log(res);
+                console.log('paso 3.2'); // listar inscritos
+                this.paso = 3.2;
+            }
+        });
+    }
+
+    guardarInscrito() {
+        const data = {
+            'nombres': this.inscritoGroup.value.nombres,
+            'apellidos': this.inscritoGroup.value.apellidos,
         };
         this.inscritoService.store(data).subscribe(res => {
             const message = 'El inscrito ' + res.nombres.toUpperCase() + ' ' + res.apellidos.toUpperCase() +
@@ -255,7 +256,7 @@ export class TramiteComponent implements OnInit {
             const dialogRef = this.dialog.open(MensajeDialogComponent, {
                 width: '400px',
                 height: '150px',
-                data: { mensaje: message}
+                data: {mensaje: message}
             });
             dialogRef.afterClosed().subscribe(result => {
                 console.log('The dialog was closed');
@@ -266,26 +267,27 @@ export class TramiteComponent implements OnInit {
         });
     }
 
-  seleccionarInscrito(record) {
-    this.inscrito = record;
-    this.paso = 4; // obs
-  }
-  guardarTramite(){
-    this.solicitudAutorizacionService.store(this.solicitud_autorizacion).subscribe(res => {
-        this.tramite.solicitud_autorizacion_id = res.id;
-        this.tramiteService.store(this.tramite).subscribe( res => {
-            const dialogRef = this.dialog.open(MensajeDialogComponent, {
-                width: '400px',
-                height: '150px',
-                data: { mensaje: 'Tramite registrado exitosamente' }
-            });
-            dialogRef.afterClosed().subscribe(result => {
-                console.log('The dialog was closed');
-                console.log(result);
-                this.paso = 1;
+    seleccionarInscrito(record) {
+        this.inscrito = record;
+        this.paso = 4; // obs
+    }
+
+    guardarTramite() {
+        this.solicitudAutorizacionService.store(this.solicitud_autorizacion).subscribe(res => {
+            this.tramite.solicitud_autorizacion_id = res.id;
+            this.tramiteService.store(this.tramite).subscribe(res => {
+                const dialogRef = this.dialog.open(MensajeDialogComponent, {
+                    width: '400px',
+                    height: '150px',
+                    data: {mensaje: 'Tramite registrado exitosamente'}
+                });
+                dialogRef.afterClosed().subscribe(result => {
+                    console.log('The dialog was closed');
+                    console.log(result);
+                    this.paso = 1;
+                });
             });
         });
-    });
-  }
+    }
 
 }

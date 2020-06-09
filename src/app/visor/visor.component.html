@@ -1,8 +1,10 @@
-<button md-icon-button color="default" class="button-visor" routerLink="/noticias/nuevo"><md-icon>home</md-icon></button>
-<marquee class="mensaje">{{ noticias }}</marquee>
+<button class="button-visor" color="default" mat-icon-button routerLink="/noticias/nuevo">
+    <mat-icon>home</mat-icon>
+</button>
+<marquee [innerHTML]="noticias" class="mensaje"></marquee>
 <section class="video-container">
     <app-video></app-video>
-    <img src="../../assets/logo.png" class="logo">
+    <img class="logo" src="assets/logo.png">
 </section>
 
 <div class="fichas">

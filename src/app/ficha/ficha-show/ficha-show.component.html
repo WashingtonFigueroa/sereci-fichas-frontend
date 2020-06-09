@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col-md-4">
-    <md-list class="list">
-      <h3 md-subheader>Agencias<span *ngIf="router.url == '/agencias/nuevo'"> | Nuevo</span> <span *ngIf="router.url == '/agencias/lista'"> | Lista</span>
+    <mat-list class="list">
+      <h3 mat-subheader>Agencias<span *ngIf="router.url == '/agencias/nuevo'"> | Nuevo</span> <span *ngIf="router.url == '/agencias/lista'"> | Lista</span>
       </h3>
-      <md-list-item>
-        <md-icon md-list-icon>folder</md-icon>
-        <h4 md-line><a routerLink="nuevo" class="list-link">Registrar Nuevo</a></h4>
-        <p md-line> *Aqui registra tu nueva agencia</p>
-      </md-list-item>
-      <md-list-item>
-        <md-icon md-list-icon>folder</md-icon>
-        <h4 md-line><a routerLink="lista" class="list-link">Listar Agencias</a></h4>
-        <p md-line> *Aqui encontraras el listado</p>
-      </md-list-item>
-    </md-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line><a routerLink="nuevo" class="list-link">Registrar Nuevo</a></h4>
+        <p mat-line> *Aqui registra tu nueva agencia</p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line><a routerLink="lista" class="list-link">Listar Agencias</a></h4>
+        <p mat-line> *Aqui encontraras el listado</p>
+      </mat-list-item>
+    </mat-list>
   </div>
   <div class="col-md-7 padding">
     <router-outlet></router-outlet>

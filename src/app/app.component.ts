@@ -1,18 +1,23 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UsuarioService} from './usuario/usuario.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent implements OnInit {
     token: any = null;
-    constructor(protected router: Router, protected usuarioService: UsuarioService){
+
+    constructor(public router: Router, protected usuarioService: UsuarioService) {
         this.token = localStorage.getItem('token');
     }
-    logout(){
+
+    ngOnInit() {
+    }
+
+    logout() {
         this.usuarioService.logout();
     }
 }

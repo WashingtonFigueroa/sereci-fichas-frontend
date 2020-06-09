@@ -1,27 +1,27 @@
-<md-card>
-  <md-card-header>
-    <div md-card-avatar class="header-image">
-      <md-icon>recent_actors</md-icon>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="header-image">
+      <mat-icon>recent_actors</mat-icon>
     </div>
-    <md-card-title>Registrar Asignacion de Ventanillas</md-card-title>
-    <md-card-subtitle>*La asignacion de ventanillas permite asignar a una ventanilla a un cajero.</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
+    <mat-card-title>Registrar Asignacion de Ventanillas</mat-card-title>
+    <mat-card-subtitle>*La asignacion de ventanillas permite asignar a una ventanilla a un cajero.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
     <form (submit)="store()" [formGroup]="asignacionVentanillaGroup">
-      <md-select placeholder="Ventanilla" name="ventanilla_id"  formControlName="ventanilla_id" class="full-width margin-bottom">
-        <md-option *ngFor="let ventanilla of ventanillas" [value]="ventanilla.id">
+      <mat-select placeholder="Ventanilla" name="ventanilla_id"  formControlName="ventanilla_id" class="full-width margin-bottom">
+        <mat-option *ngFor="let ventanilla of ventanillas" [value]="ventanilla.id">
           VENTANILLA: {{ventanilla.numero}}
-        </md-option>
-      </md-select>
-      <md-select placeholder="Cajero" name="cajero_id"  formControlName="cajero_id" class="full-width margin-bottom">
-        <md-option *ngFor="let cajero of cajeros" [value]="cajero.id">
+        </mat-option>
+      </mat-select>
+      <mat-select placeholder="Cajero" name="cajero_id"  formControlName="cajero_id" class="full-width margin-bottom">
+        <mat-option *ngFor="let cajero of cajeros" [value]="cajero.id">
           {{ cajero.user.nombres | uppercase }} {{ cajero.user.apellidos | uppercase }}
-        </md-option>
-      </md-select>
+        </mat-option>
+      </mat-select>
 
       <div class="text-right">
-        <button md-button type="submit" [disabled]="!asignacionVentanillaGroup.valid && asignacionVentanillaGroup.touched"> <md-icon>save</md-icon> Guardar</button>
+        <button mat-button type="submit" [disabled]="!asignacionVentanillaGroup.valid && asignacionVentanillaGroup.touched"> <mat-icon>save</mat-icon> Guardar</button>
       </div>
     </form>
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>

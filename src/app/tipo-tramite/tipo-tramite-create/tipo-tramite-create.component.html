@@ -1,31 +1,32 @@
-<md-card>
-  <md-card-header>
-    <div md-card-avatar class="header-image">
-      <md-icon>description</md-icon>
-    </div>
-    <md-card-title>Registrar Tipo de Tramite</md-card-title>
-    <md-card-subtitle>*El tipo de tramite es necesario para identificar a los tramites.</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-    <form (ngSubmit)="store()" [formGroup]="tipoTramiteGroup">
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Nombre" ngModel name="nombre" formControlName="nombre">
-        <md-error *ngIf="!tipoTramiteGroup.get('nombre').valid && tipoTramiteGroup.get('nombre').touched">
-          Por favor ingresa el nombre del tipo de tramite
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
-        <md-error *ngIf="!tipoTramiteGroup.get('descripcion').valid && tipoTramiteGroup.get('descripcion').touched">
-          Por favor ingresa la descripcion del tipo de tramite
-        </md-error>
-      </md-input-container>
-      <div class="text-right">
-        <button md-button [disabled]="!tipoTramiteGroup.valid && tipoTramiteGroup.touched" >
-          <md-icon>save</md-icon>
-          Guardar
-        </button>
-      </div>
-    </form>
-  </md-card-content>
-</md-card>
+<mat-card>
+    <mat-card-header>
+        <div class="header-image" mat-card-avatar>
+            <mat-icon>description</mat-icon>
+        </div>
+        <mat-card-title>Registrar Tipo de Tramite</mat-card-title>
+        <mat-card-subtitle>*El tipo de tramite es necesario para identificar a los tramites.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="store()" [formGroup]="tipoTramiteGroup">
+            <mat-input-container class="full-width">
+                <input formControlName="nombre" matInput name="nombre" ngModel placeholder="Nombre">
+                <mat-error *ngIf="!tipoTramiteGroup.get('nombre').valid && tipoTramiteGroup.get('nombre').touched">
+                    Por favor ingresa el nombre del tipo de tramite
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="descripcion" matInput name="descripcion" ngModel placeholder="Descripcion">
+                <mat-error
+                    *ngIf="!tipoTramiteGroup.get('descripcion').valid && tipoTramiteGroup.get('descripcion').touched">
+                    Por favor ingresa la descripcion del tipo de tramite
+                </mat-error>
+            </mat-input-container>
+            <div class="text-right">
+                <button [disabled]="!tipoTramiteGroup.valid && tipoTramiteGroup.touched" mat-button>
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

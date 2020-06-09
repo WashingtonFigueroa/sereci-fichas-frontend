@@ -1,10 +1,10 @@
-<md-progress-spinner color="accent" mode="indeterminate" class="center" *ngIf="!loading"></md-progress-spinner>
-<md-radio-group [(ngModel)]="tipo" class="full-width radio-group" (ngModelChange)="onChange()" *ngIf="loading">
-    <md-radio-button value="usuario">Usuarios</md-radio-button>
-    <md-radio-button value="administrador">Administradores</md-radio-button>
-    <md-radio-button value="comunicador">Comunicadores</md-radio-button>
-    <md-radio-button value="cajero">Cajeros</md-radio-button>
-</md-radio-group>
+<!--<mat-progress-spinner color="accent" mode="indeterminate" class="center" *ngIf="!loading"></mat-progress-spinner>-->
+<!--<md-radio-group [(ngModel)]="tipo" class="full-width radio-group" (ngModelChange)="onChange()" *ngIf="loading">
+    <mat-radio-button value="usuario">Usuarios</mat-radio-button>
+    <mat-radio-button value="administrador">Administradores</mat-radio-button>
+    <mat-radio-button value="comunicador">Comunicadores</mat-radio-button>
+    <mat-radio-button value="cajero">Cajeros</mat-radio-button>
+</md-radio-group>-->
 <app-usuario-show
         *ngFor="let usuario of usuarios"
         [usuario]="usuario">

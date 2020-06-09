@@ -1,40 +1,43 @@
-<md-card>
-  <md-card-header>
-    <div md-card-avatar class="header-image">
-      <md-icon>assignment</md-icon>
-    </div>
-    <md-card-title>Registrar Articulo</md-card-title>
-    <md-card-subtitle>*Los articulos son parte de una normativa.</md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-    <form (ngSubmit)="store()" [formGroup]="articuloGroup">
-      <md-select class="full-width" placeholder="Normativa" ngModel name="normativa_id" formControlName="normativa_id" *ngIf="normativas != null">
-        <md-option *ngFor="let normativa of normativas" [value]="normativa.id">{{ normativa.codigo | uppercase }}</md-option>
-      </md-select>
-      <md-input-container class="full-width">
-        <input type="number" mdInput placeholder="Numero de articulo" ngModel name="numero" formControlName="numero">
-        <md-error *ngIf="!articuloGroup.get('numero').valid && articuloGroup.get('numero').touched">
-          Por favor ingresa el numero de articulo
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Inciso. Ej. c" ngModel name="inciso" formControlName="inciso">
-        <md-error *ngIf="!articuloGroup.get('inciso').valid && articuloGroup.get('inciso').touched">
-          Por favor ingresa el inciso
-        </md-error>
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput placeholder="Descripcion" ngModel name="descripcion" formControlName="descripcion">
-        <md-error *ngIf="!articuloGroup.get('descripcion').valid && articuloGroup.get('descripcion').touched">
-          Por favor ingresa la descripcion
-        </md-error>
-      </md-input-container>
-      <div class="text-right">
-        <button md-button [disabled]="!articuloGroup.valid && articuloGroup.touched" >
-          <md-icon>save</md-icon>
-          Guardar
-        </button>
-      </div>
-    </form>
-  </md-card-content>
-</md-card>
+<mat-card>
+    <mat-card-header>
+        <div class="header-image" mat-card-avatar>
+            <mat-icon>assignment</mat-icon>
+        </div>
+        <mat-card-title>Registrar Articulo</mat-card-title>
+        <mat-card-subtitle>*Los articulos son parte de una normativa.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="store()" [formGroup]="articuloGroup">
+            <mat-select *ngIf="normativas != null" class="full-width" formControlName="normativa_id" name="normativa_id"
+                        ngModel placeholder="Normativa">
+                <mat-option *ngFor="let normativa of normativas"
+                            [value]="normativa.id">{{ normativa.codigo | uppercase }}</mat-option>
+            </mat-select>
+            <mat-input-container class="full-width">
+                <input formControlName="numero" matInput name="numero" ngModel placeholder="Numero de articulo"
+                       type="number">
+                <mat-error *ngIf="!articuloGroup.get('numero').valid && articuloGroup.get('numero').touched">
+                    Por favor ingresa el numero de articulo
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="inciso" matInput name="inciso" ngModel placeholder="Inciso. Ej. c">
+                <mat-error *ngIf="!articuloGroup.get('inciso').valid && articuloGroup.get('inciso').touched">
+                    Por favor ingresa el inciso
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width">
+                <input formControlName="descripcion" matInput name="descripcion" ngModel placeholder="Descripcion">
+                <mat-error *ngIf="!articuloGroup.get('descripcion').valid && articuloGroup.get('descripcion').touched">
+                    Por favor ingresa la descripcion
+                </mat-error>
+            </mat-input-container>
+            <div class="text-right">
+                <button [disabled]="!articuloGroup.valid && articuloGroup.touched" mat-button>
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

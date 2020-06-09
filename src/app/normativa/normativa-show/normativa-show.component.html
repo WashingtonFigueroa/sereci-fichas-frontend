@@ -1,43 +1,43 @@
-<md-card class="margin-bottom">
-  <md-card-header>
-    <div md-card-avatar class="header-image" (click)="toggle = !toggle" >
-      <md-icon *ngIf="toggle == false">menu</md-icon>
-      <md-icon *ngIf="toggle == true">clear</md-icon>
+<mat-card class="margin-bottom">
+  <mat-card-header>
+    <div mat-card-avatar class="header-image" (click)="toggle = !toggle" >
+      <mat-icon *ngIf="toggle == false">menu</mat-icon>
+      <mat-icon *ngIf="toggle == true">clear</mat-icon>
     </div>
-    <md-card-title>{{ normativa.descripcion }}</md-card-title>
-    <md-card-subtitle>
-      <md-chip-list>
-        <md-chip color="primary" selected="true" *ngIf="normativa.vigente == true">Vigente</md-chip>
-        <md-chip color="accent" selected="true" *ngIf="normativa.vigente == false">
+    <mat-card-title>{{ normativa.descripcion }}</mat-card-title>
+    <mat-card-subtitle>
+      <mat-chip-list>
+        <mat-chip color="primary" selected="true" *ngIf="normativa.vigente == true">Vigente</mat-chip>
+        <mat-chip color="accent" selected="true" *ngIf="normativa.vigente == false">
           Caducado
-        </md-chip>
-      </md-chip-list>
-    </md-card-subtitle>
-  </md-card-header>
-  <md-card-content *ngIf="toggle == true">
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="toggle == true">
     <form (ngSubmit)="update()">
       <md-radio-group class="full-width" placeholder="Vigencia de la normativa" id="vigente" name="vigente" [(ngModel)]="normativa.vigente">
         <div class="row margin-bottom">
           <div class="col-md-6">
-            <md-radio-button value=1>Vigente</md-radio-button>
+            <mat-radio-button value=1>Vigente</mat-radio-button>
           </div>
           <div class="col-md-6">
-            <md-radio-button value=0>Caducado</md-radio-button>
+            <mat-radio-button value=0>Caducado</mat-radio-button>
           </div>
         </div>
       </md-radio-group>
-      <md-input-container class="full-width">
-        <input mdInput ngModel placeholder="codigo" name="codigo" [(ngModel)]="normativa.codigo">
-      </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput ngModel placeholder="Descripcion" name="descripcion" [(ngModel)]="normativa.descripcion">
-      </md-input-container>
+      <mat-input-container class="full-width">
+        <input matInput ngModel placeholder="codigo" name="codigo" [(ngModel)]="normativa.codigo">
+      </mat-input-container>
+      <mat-input-container class="full-width">
+        <input matInput ngModel placeholder="Descripcion" name="descripcion" [(ngModel)]="normativa.descripcion">
+      </mat-input-container>
       <div class="text-right">
-        <button md-button type="submit"><md-icon>save</md-icon> Actualizar</button>
+        <button mat-button type="submit"><mat-icon>save</mat-icon> Actualizar</button>
       </div>
     </form>
-  </md-card-content>
-  <md-card-footer align="end" *ngIf="false">
-    <button md-icon-button (click)="destroy()"><md-icon>delete</md-icon></button>
-  </md-card-footer>
-</md-card>
+  </mat-card-content>
+  <mat-card-footer align="end" *ngIf="false">
+    <button mat-icon-button (click)="destroy()"><mat-icon>delete</mat-icon></button>
+  </mat-card-footer>
+</mat-card>

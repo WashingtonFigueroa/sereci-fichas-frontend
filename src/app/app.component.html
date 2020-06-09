@@ -1,36 +1,76 @@
-<md-toolbar class="navegacion" color="primary" *ngIf="router.url != '/visor' && router.url != '/login' && usuarioService.getUser()!= null ">
-    <span>SASTRA - SISTEMA DE ATENCION Y SEGUIMIENTO DE TRAMITES</span>
+<mat-toolbar *ngIf="router.url != '/visor' && router.url != '/login' && usuarioService.getUser()!= null "
+             class="navegacion"
+             color="primary">
+    <span>SASTRA - SISTEMA DE ATENCIÓN Y SEGUIMIENTO DE TRÁMITES</span>
     <span class="fill-remaining-space"></span>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/fichas"><md-icon mdTooltip="Fichas">cast</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/visor"><md-icon mdTooltip="Visor">cast</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/videos-upload"><md-icon mdTooltip="Video">cast_connected</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" [mdMenuTriggerFor]="appCategorias"><md-icon mdTooltip="Categorias">recent_actors</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/asignacion-ventanillas"><md-icon mdTooltip="Asignación Ventanillas">video_label</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" [mdMenuTriggerFor]="appTramites"><md-icon mdTooltip="Tramites">description</md-icon></button>
-    <button md-icon-button routerLink="tramites" *ngIf="usuarioService.getUser().tipo == 'cajero'"><md-icon mdTooltip="Asignación Tramites">receipt</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" routerLink="/noticias"><md-icon mdTooltip="Noticias">assignment</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'" [mdMenuTriggerFor]="appNormativas"><md-icon mdTooltip="Normativas">library_books</md-icon></button>
-    <button md-icon-button *ngIf="usuarioService.getUser().tipo == 'administrador'" routerLink="/usuarios"><md-icon mdTooltip="Usuarios">account_circle</md-icon></button>
-    {{ usuarioService.getUser().tipo }}
-    <button md-icon-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon></button>
-</md-toolbar>
-<md-menu #appMenu="mdMenu">
-    <button md-menu-item routerLink="/perfil"> Perfil </button>
-    <button md-menu-item (click)="logout()"> Cerrar Sesion</button>
-</md-menu>
-<md-menu #appCategorias="mdMenu">
-    <button md-menu-item routerLink="/categorias"> Categorias</button>
-    <button md-menu-item routerLink="/ventanillas"> Ventanillas</button>
-    <button md-menu-item routerLink="/asignacion-categorias"> Asignacion de Categorias</button>
-</md-menu>
-<md-menu #appTramites="mdMenu">
-    <button md-menu-item routerLink="/tipo-tramites"> Tipo de Tramites</button>
-    <button md-menu-item routerLink="/categoria-tramites"> Categoria de Tramites</button>
-</md-menu>
-<md-menu #appNormativas="mdMenu">
-    <button md-menu-item routerLink="/normativas"> Normativas</button>
-    <button md-menu-item routerLink="/articulos"> Articulos</button>
-</md-menu>
-<section class="content">
+    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+            mat-icon-button
+            routerLink="/fichas">
+        <mat-icon matTooltip="Fichas">cast</mat-icon>
+    </button>
+    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+            mat-icon-button
+            routerLink="/visor">
+        <mat-icon matTooltip="Visor">tv</mat-icon>
+    </button>
+    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+            mat-icon-button
+            routerLink="/videos-upload">
+        <mat-icon matTooltip="Video">cast_connected</mat-icon>
+    </button>
+    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+            [matMenuTriggerFor]="appCategorias"
+            mat-icon-button>
+        <mat-icon matTooltip="Categorias">recent_actors</mat-icon>
+    </button>
+    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+            mat-icon-button
+            routerLink="/asignacion-ventanillas">
+        <mat-icon matTooltip="Asignación Ventanillas">video_label</mat-icon>
+    </button>
+    <!--    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+                [matMenuTriggerFor]="appTramites"
+                mat-icon-button>
+            <mat-icon matTooltip="Tramites">description</mat-icon>
+        </button>-->
+    <button *ngIf="usuarioService.getUser().tipo == 'cajero'" mat-icon-button routerLink="atencion-ventanilla">
+        <mat-icon matTooltip="Atención de Ventanilla">receipt</mat-icon>
+    </button>
+    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+            mat-icon-button
+            routerLink="/noticias">
+        <mat-icon matTooltip="Noticias">assignment</mat-icon>
+    </button>
+    <!--    <button *ngIf="usuarioService.getUser().tipo == 'administrador' || usuarioService.getUser().tipo == 'comunicador'"
+                [matMenuTriggerFor]="appNormativas"
+                mat-icon-button>
+            <mat-icon matTooltip="Normativas">library_books</mat-icon>
+        </button>-->
+    <button *ngIf="usuarioService.getUser().tipo == 'administrador'" mat-icon-button routerLink="/usuarios">
+        <mat-icon matTooltip="Usuarios">account_circle</mat-icon>
+    </button>
+    {{ usuarioService.getUser().cuenta }}
+    <button [matMenuTriggerFor]="appMenu" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-menu #appMenu="matMenu">
+    <button mat-menu-item routerLink="/perfil"> Perfil</button>
+    <button (click)="logout()" mat-menu-item> Salir</button>
+</mat-menu>
+<mat-menu #appCategorias="matMenu">
+    <button mat-menu-item routerLink="/categorias"> Categorías</button>
+    <button mat-menu-item routerLink="/ventanillas"> Ventanillas</button>
+    <button mat-menu-item routerLink="/asignacion-categorias"> Asignación de Categorias</button>
+</mat-menu>
+<!--<mat-menu #appTramites="matMenu">
+    <button mat-menu-item routerLink="/tipo-tramites"> Tipo de Tramites</button>
+    <button mat-menu-item routerLink="/categoria-tramites"> Categoria de Tramites</button>
+</mat-menu>-->
+<mat-menu #appNormativas="matMenu">
+    <button mat-menu-item routerLink="/normativas"> Normativas</button>
+    <button mat-menu-item routerLink="/articulos"> Artículos</button>
+</mat-menu>
+<section [ngClass]="{'content': router.url !== '/login', 'bg-pattern': router.url === '/login'}">
     <router-outlet></router-outlet>
 </section>
